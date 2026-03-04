@@ -73,6 +73,7 @@ const ENCOUNTERS_HOME = [
         discoverable: true,
         autoEngage: true,
         isModder: true,
+        requires: "Home: Spark",
         description: "The bay next door is a mess of stripped wiring and mod casings. A girl — sixteen, maybe seventeen — is cross-legged on the floor, soldering something that crackles with blue light.",
         engageText: "She looks up the second you walk in and her eyes go wide. Not afraid. *Fascinated.*\n\n'Oh my god. Oh my *god*.' She's on her feet instantly, circling you, running her hands along your chassis without asking. 'You're the one the Professor dragged in. The combobreaker with no pilot.' She ducks under your arm and peers into the empty cockpit.\n\n'It's really empty. There's nobody in there. That's — that's *insane*.' She pops back out grinning. 'I'm Spark. I do mods. And you —' She taps your chest plate. 'You don't have any. We need to fix that immediately.'",
         discoveredDescription: "Spark's bay is a controlled disaster of mod parts and soldering tools. She's always working on something.",
