@@ -462,6 +462,10 @@
         .inline-bar-container.enemy-hp .inline-bar-fill {
             background: linear-gradient(90deg, #ff4444, #cc2222);
         }
+        .inline-bar-container.enemy-def { border: 1px solid #4488ff; }
+        .inline-bar-container.enemy-def .inline-bar-fill {
+            background: linear-gradient(90deg, #4488ff, #2266dd);
+        }
         .inline-bar-fill {
             height: 100%;
             transition: width 0.3s ease;
@@ -3601,7 +3605,7 @@
             content.appendChild(labelEl);
             content.appendChild(textEl);
 
-            if (options.hpBar || options.defBar || options.enemyHpBar) {
+            if (options.hpBar || options.defBar || options.enemyHpBar || options.enemyDefBar) {
                 const row = document.createElement('div');
                 row.className = 'inline-bars-row';
 
@@ -3642,6 +3646,10 @@
 
                 if (options.enemyHpBar) {
                     row.appendChild(createBar('enemy-hp', 'HP', options.enemyHpBar));
+                }
+
+                if (options.enemyDefBar) {
+                    row.appendChild(createBar('enemy-def', 'DEF', options.enemyDefBar));
                 }
 
                 content.appendChild(row);
@@ -6428,21 +6436,25 @@
                 async function narratePlayerAttack(targetLabel, rawAtk, def, dmg, opts) {
                     const actionVerb = isAoe ? 'fires at' : 'attacks';
                     const modLabel = mod ? ` with <b>${mod.name.toUpperCase()}</b>` : '';
+                    const barData = { ...(opts.hpBarData || {}) };
+                    if (def > 0) {
+                        barData.enemyDefBar = { current: def, max: def };
+                    }
                     // 1. Announce raw attack
                     await addMessage(`<b>MECH</b> ${actionVerb} <b>${targetLabel}</b>${modLabel} for <b>${rawAtk} DMG</b>`, 'player', { html: true });
 
                     // 2. Defence response + result
                     if (def > 0 && def >= rawAtk) {
                         // Fully blocked
-                        await addMessage(`<b>${targetLabel} DEF</b> blocks <b>${rawAtk} DMG</b>`, 'enemy', { html: true, ...(opts.hpBarData || {}) });
+                        await addMessage(`<b>${targetLabel} DEF</b> blocks <b>${rawAtk} DMG</b>`, 'enemy', { html: true, ...barData });
                     } else if (def > 0) {
                         // Partial block
-                        await addMessage(`<b>${targetLabel} DEF</b> absorbs <b>${def} DMG</b> - but <b>${dmg} DMG</b> is dealt`, 'enemy', { html: true, ...(opts.hpBarData || {}) });
+                        await addMessage(`<b>${targetLabel} DEF</b> absorbs <b>${def} DMG</b> - but <b>${dmg} DMG</b> is dealt`, 'enemy', { html: true, ...barData });
                     } else if (dmg > 0) {
                         // No defence
-                        await addMessage(`<b>${targetLabel}</b> takes <b>${dmg} DMG</b>`, 'enemy', { html: true, ...(opts.hpBarData || {}) });
+                        await addMessage(`<b>${targetLabel}</b> takes <b>${dmg} DMG</b>`, 'enemy', { html: true, ...barData });
                     } else {
-                        await addMessage(`<b>${targetLabel}</b> takes <b>0 DMG</b>`, 'enemy', { html: true, ...(opts.hpBarData || {}) });
+                        await addMessage(`<b>${targetLabel}</b> takes <b>0 DMG</b>`, 'enemy', { html: true, ...barData });
                     }
                 }
 
