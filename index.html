@@ -6373,7 +6373,7 @@
             let attackCount = speedTriggered ? (warTriggered ? 4 : 2) : 1;
 
             // Mod-driven action flags
-            const isRegen = mod && mod.isRegen;
+            const regenMult = mod ? (mod.regenMult || 0) : 0;
             const isAoe = mod && mod.targeting === 'aoe';
             const hasAttack = mod && mod.atkMult > 0;
 
@@ -6617,8 +6617,8 @@
             // Only REGEN mods (Quick Repair, Deep Restore) trigger in-combat healing.
             let regenHealed = 0;
             const hpBeforeRegen = p.hp;
-            if (isRegen && p.regen > 0 && p.hp < p.maxHp) {
-                regenHealed = Math.min(p.regen * 2, p.maxHp - p.hp);
+            if (regenMult > 0 && p.regen > 0 && p.hp < p.maxHp) {
+                regenHealed = Math.min(p.regen * regenMult, p.maxHp - p.hp);
                 p.hp += regenHealed;
                 updateStats();
             }

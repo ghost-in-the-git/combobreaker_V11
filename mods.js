@@ -17,7 +17,7 @@
  * - atkMult:   Attack multiplier (0 = no attack)
  * - defMult:   Defence multiplier for the round
  * - targeting: single | aoe | none
- * - isRegen:   true if this mod doubles HP regen
+ * - regenMult: Regen multiplier (0 = no regen, 1 = 1×REGEN stat, 2 = 2×, etc.)
  * - cssClass:  CSS class for the combat button
  * - flavour:   Array of random flavour messages
  * - cost:      Purchase price in Silicon
@@ -39,7 +39,7 @@ const MOD_BASES = [
         atkMult: 1,
         defMult: 1,
         targeting: 'single',
-        isRegen: false,
+        regenMult: 0,
         cssClass: 'light',
         flavour: [
             "Quick strike. Keep your guard up.",
@@ -60,7 +60,7 @@ const MOD_BASES = [
         atkMult: 1.5,
         defMult: 0.5,
         targeting: 'single',
-        isRegen: false,
+        regenMult: 0,
         cssClass: 'heavy',
         flavour: [
             "You drop your guard and swing with everything.",
@@ -81,7 +81,7 @@ const MOD_BASES = [
         atkMult: 0.5,
         defMult: 1,
         targeting: 'aoe',
-        isRegen: false,
+        regenMult: 0,
         cssClass: 'ranged',
         flavour: [
             "Weapons free. Hit everything that moves.",
@@ -102,7 +102,7 @@ const MOD_BASES = [
         atkMult: 0,
         defMult: 3,
         targeting: 'none',
-        isRegen: false,
+        regenMult: 0,
         cssClass: 'combat-regen',
         flavour: [
             "Systems locked. Bracing for impact.",
@@ -123,7 +123,7 @@ const MOD_BASES = [
         atkMult: 0,
         defMult: 2,
         targeting: 'none',
-        isRegen: true,
+        regenMult: 1,
         cssClass: 'combat-regen',
         flavour: [
             "Pull back and reroute power to repair systems.",
@@ -144,7 +144,7 @@ const MOD_BASES = [
         atkMult: 1.3,
         defMult: 0.7,
         targeting: 'single',
-        isRegen: false,
+        regenMult: 0,
         cssClass: 'light',
         flavour: [
             "Targeting weak point. Firing.",
@@ -165,7 +165,7 @@ const MOD_BASES = [
         atkMult: 2,
         defMult: 0.3,
         targeting: 'single',
-        isRegen: false,
+        regenMult: 0,
         cssClass: 'heavy',
         flavour: [
             "Reactor overload. All power to weapons.",
@@ -186,7 +186,7 @@ const MOD_BASES = [
         atkMult: 0.8,
         defMult: 0.8,
         targeting: 'aoe',
-        isRegen: false,
+        regenMult: 0,
         cssClass: 'ranged',
         flavour: [
             "Saturating the zone. Nothing untouched.",
@@ -207,7 +207,7 @@ const MOD_BASES = [
         atkMult: 0.5,
         defMult: 2.5,
         targeting: 'none',
-        isRegen: false,
+        regenMult: 0,
         cssClass: 'combat-regen',
         flavour: [
             "Braced and ready. Counterattack primed.",
@@ -228,7 +228,7 @@ const MOD_BASES = [
         atkMult: 0,
         defMult: 1.5,
         targeting: 'none',
-        isRegen: true,
+        regenMult: 2,
         cssClass: 'combat-regen',
         flavour: [
             "Full system diagnostic. Rerouting all power.",
@@ -324,7 +324,7 @@ for (let b = 0; b < MOD_BASES.length; b++) {
             atkMult: base.atkMult,
             defMult: base.defMult,
             targeting: base.targeting,
-            isRegen: base.isRegen || false,
+            regenMult: base.regenMult || 0,
             cssClass: element ? (base.cssClass + ' element-' + element) : base.cssClass,
             flavour: base.flavour,
             cost: element ? base.cost * 2 : base.cost
