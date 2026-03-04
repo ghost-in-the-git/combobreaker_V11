@@ -5763,7 +5763,7 @@
             };
             game.isAmbush = true;
 
-            addMessage(`[AMBUSH] A squad of ${enemyCount} ${ambushEnemy.name}s has locked onto your location [ATK:${ambushEnemy.attack} DEF:${ambushEnemy.defence} HP:${ambushEnemy.hp}]`, 'enemy');
+            addMessage(`[AMBUSH] A squad of ${enemyCount} ${ambushEnemy.name}s has locked onto your location [ATK: ${ambushEnemy.attack} DEF: ${ambushEnemy.defence} HP: ${ambushEnemy.hp}]`, 'enemy');
 
             // Create countdown message
             let secondsLeft = Math.floor(game.WAVE_EXPIRE / 1000);
@@ -6008,7 +6008,7 @@
             fightBtn.addEventListener('click', () => {
                 removeBossDialogue();
                 const et = game.currentWave.enemyType;
-                addMessage(`[ENGAGING BOSS] ${et.name} [ATK:${et.attack} DEF:${et.defence} HP:${et.hp}]`, 'enemy');
+                addMessage(`[ENGAGING BOSS] ${et.name} [ATK: ${et.attack} DEF: ${et.defence} HP: ${et.hp}]`, 'enemy');
                 engageBattle();
             });
             container.appendChild(fightBtn);
@@ -6075,7 +6075,7 @@
                         if (game.currentWave) {
                             const et = game.currentWave.enemyType;
                             addMessage(`[MISSION] ${missionEnc.name} — ${progress.kills}/${missionEnc.killsRequired} squads destroyed`, 'system');
-                            addMessage(`ENEMY DETECTED: &nbsp;${et.name.toUpperCase()}<br>SQUAD SIZE: ${game.currentWave.count} &nbsp;| &nbsp;ATK:${et.attack} &nbsp;| &nbsp;DEF:${et.defence} &nbsp;| &nbsp;HP:${et.hp} &nbsp;| &nbsp;TYPE: ${et.element.toUpperCase()}`, 'enemy', { html: true });
+                            addMessage(`ENEMY DETECTED: &nbsp;${et.name.toUpperCase()}<br>SQUAD SIZE: ${game.currentWave.count} &nbsp;| &nbsp;ATK: ${et.attack} &nbsp;| &nbsp;DEF: ${et.defence} &nbsp;| &nbsp;HP: ${et.hp} &nbsp;| &nbsp;TYPE: ${et.element.toUpperCase()}`, 'enemy', { html: true });
 
                             let secondsLeft = Math.floor(game.WAVE_EXPIRE / 1000);
                             const countdownMsg = document.createElement('div');
@@ -6156,7 +6156,7 @@
 
             game.currentWave = generateWave();
             const et = game.currentWave.enemyType;
-            addMessage(`ENEMY DETECTED: &nbsp;${et.name.toUpperCase()}<br>SQUAD SIZE: ${game.currentWave.count} &nbsp;| &nbsp;ATK:${et.attack} &nbsp;| &nbsp;DEF:${et.defence} &nbsp;| &nbsp;HP:${et.hp} &nbsp;| &nbsp;TYPE: ${et.element.toUpperCase()}`, 'enemy', { html: true });
+            addMessage(`ENEMY DETECTED: &nbsp;${et.name.toUpperCase()}<br>SQUAD SIZE: ${game.currentWave.count} &nbsp;| &nbsp;ATK: ${et.attack} &nbsp;| &nbsp;DEF: ${et.defence} &nbsp;| &nbsp;HP: ${et.hp} &nbsp;| &nbsp;TYPE: ${et.element.toUpperCase()}`, 'enemy', { html: true });
 
             // Create countdown message
             let secondsLeft = Math.floor(game.WAVE_EXPIRE / 1000);
