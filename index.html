@@ -4897,8 +4897,8 @@
             // The Professor introduces Spark on first visit
             if (currentEncounter.name === 'The Professor' && !(game.storyItems || []).includes('Home: The Professor')) {
                 addStoryItem('Home: The Professor');
-                addStoryItem('Home: Spark');
                 await addMessage(`He jerks his thumb toward the next bay. "Go see Spark before you head out. She does mods — combat modules. Grab some off her, or you'll be unable to hurt a fly."`, 'system', { label: currentEncounter.name, image: currentEncounter.characterImage, characterDialogue: !!currentEncounter.characterImage });
+                addStoryItem('Home: Spark');
             }
 
             // Spark gives starter mods (Swift Strike + Quick Repair) on first visit

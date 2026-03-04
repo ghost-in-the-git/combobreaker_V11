@@ -376,6 +376,12 @@ const STORY_ITEMS = [
         image: "images/IMAGE.gif"
     },
     {
+        name: "Home: Spark",
+        desc: "Spark's mod bay coordinates, right next door to the Professor. She's always tinkering.",
+        category: "locationmap",
+        image: "images/IMAGE.gif"
+    },
+    {
         name: "The Ratpile: The Mapmaker",
         desc: "Coordinates to a hooded cartographer's position in the Ratpile tunnels. He never moves.",
         category: "locationmap",
