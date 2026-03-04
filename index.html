@@ -450,12 +450,13 @@
         }
         .inline-bar-container {
             position: relative;
-            flex: 1;
+            flex: 4;
             background: #1a1a2e;
             border-radius: 4px;
             overflow: hidden;
             height: 18px;
         }
+        .inline-bar-container.def, .inline-bar-container.enemy-def { flex: 1; }
         .inline-bar-container.hp { border: 1px solid #00ff88; }
         .inline-bar-container.def { border: 1px solid #4488ff; }
         .inline-bar-container.enemy-hp { border: 1px solid #ff4444; }
