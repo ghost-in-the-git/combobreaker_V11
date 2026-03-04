@@ -4905,8 +4905,14 @@
             if (currentEncounter.name === 'Spark' && !game.inventory.some(i => i.name === 'Swift Strike')) {
                 const swiftStrike = MODS.find(m => m.name === 'Swift Strike');
                 const quickRepair = MODS.find(m => m.name === 'Quick Repair');
-                if (swiftStrike) addItemToInventory(swiftStrike);
-                if (quickRepair) addItemToInventory(quickRepair);
+                if (swiftStrike) {
+                    addItemToInventory(swiftStrike);
+                    await addMessage(swiftStrike.name, 'victory', { label: 'ITEM ACQUIRED' });
+                }
+                if (quickRepair) {
+                    addItemToInventory(quickRepair);
+                    await addMessage(quickRepair.name, 'victory', { label: 'ITEM ACQUIRED' });
+                }
                 // Auto-equip into first two mod slots if empty
                 if (!game.equipment.mod1 && swiftStrike) {
                     game.equipment.mod1 = swiftStrike.name;
