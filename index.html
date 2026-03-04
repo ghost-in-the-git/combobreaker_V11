@@ -5502,8 +5502,8 @@
                 game.storyItems.push(itemName);
                 const item = STORY_ITEMS.find(i => i.name === itemName);
                 if (item) {
-                    const label = item.category === 'locationmap' ? 'VENDOR FOUND' : item.category === 'mission_clearance' ? 'MISSION CLEARANCE' : 'ITEM FOUND';
-                    addMessage(`[${label}] ${item.name}`, 'victory');
+                    const label = item.category === 'locationmap' ? 'VENDOR FOUND' : item.category === 'mission_clearance' ? 'MISSION CLEARANCE' : 'ITEM ACQUIRED';
+                    addMessage(`${item.name}`, 'victory', { label });
                 }
                 updateStorageUI();
                 updateLocationDropdown();
