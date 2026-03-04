@@ -4894,12 +4894,11 @@
 
             await addMessage(engageText, 'system', { label: currentEncounter.name, image: currentEncounter.characterImage, characterDialogue: !!currentEncounter.characterImage });
 
-            // The Professor gives the Ratpile map and Spark's location on first visit
-            if (currentEncounter.name === 'The Professor' && !(game.storyItems || []).includes('Map: The Ratpile')) {
-                addStoryItem('Map: The Ratpile');
+            // The Professor introduces Spark on first visit
+            if (currentEncounter.name === 'The Professor' && !(game.storyItems || []).includes('Home: The Professor')) {
                 addStoryItem('Home: The Professor');
                 addStoryItem('Home: Spark');
-                await addMessage(`"Here — take this. It's a map to The Ratpile. Not much down there but rats, but it's a start."\n\nHe pauses, then jerks his thumb toward the next bay. "And go see Spark before you head out. She does mods — combat modules. Grab some off her, or you'll be unable to hurt a fly."`, 'system', { label: currentEncounter.name, image: currentEncounter.characterImage, characterDialogue: !!currentEncounter.characterImage });
+                await addMessage(`He jerks his thumb toward the next bay. "Go see Spark before you head out. She does mods — combat modules. Grab some off her, or you'll be unable to hurt a fly."`, 'system', { label: currentEncounter.name, image: currentEncounter.characterImage, characterDialogue: !!currentEncounter.characterImage });
             }
 
             // Spark gives starter mods (Swift Strike + Quick Repair) on first visit
@@ -4917,6 +4916,11 @@
                 }
                 updateEquipmentUI();
                 await addMessage(`She pulls two mod cylinders off the rack and slots them into your chassis before you can object.\n\n'Swift Strike — basic attack, no fuel cost, keeps you swinging. And Quick Repair — burns a little fuel, but patches you up mid-fight.' She steps back and admires her work.\n\n'There. Now you've got options. Two mod slots filled, two to go. You can grab more from the Modder out in the sector — she's got the fancy stuff.' She grins. 'But these'll keep you alive.'`, 'system', { label: 'Spark', image: currentEncounter.characterImage, characterDialogue: true });
+                // Spark gives the Ratpile map on first visit
+                if (!(game.storyItems || []).includes('Map: The Ratpile')) {
+                    addStoryItem('Map: The Ratpile');
+                    await addMessage(`She digs through a pile of junk on her bench and pulls out a creased, oil-stained map. 'Here — The Ratpile. It's not much. Rats, rust, scrap. But it's close and it's easy.' She slaps it against your chest plate.\n\n'Go give em a try. See how those mods feel in a real fight.'`, 'system', { label: 'Spark', image: currentEncounter.characterImage, characterDialogue: true });
+                }
             }
 
             // The dead Mapmaker in the Dead Zone carries his sealed key

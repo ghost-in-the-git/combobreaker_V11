@@ -54,7 +54,7 @@ const ENCOUNTERS_HOME = [
             },
             {
                 question: "Where do I start?",
-                response: "'The Ratpile. I marked it on your nav.' He holds up a hand. 'I know — it's a pit. Rats and rust and nothing worth shooting at. That's the point. You need to figure out how you work before you go anywhere real.'\n\nHe pauses. 'But first — go see Spark. Next bay over. She does mods — combat modules, the things that let you actually fight. Grab some off her or you'll be unable to hurt a fly.'\n\nHe clears his throat. 'Once you're moving, push further out. Each zone's got its own problems and its own people. Find the shops, find the refiners. And if you see a hooded figure selling maps — buy one. Don't ask me how he gets around. Just buy the map.'"
+                response: "'Go see Spark. Next bay over.' He waves a hand. 'She does mods — combat modules, the things that let you actually fight. She'll get you set up and point you somewhere safe to test them.'\n\nHe clears his throat. 'Once you're moving, push further out. Each zone's got its own problems and its own people. Find the shops, find the refiners. And if you see a hooded figure selling maps — buy one. Don't ask me how he gets around. Just buy the map.'"
             },
             {
                 question: "What's worth collecting?",
