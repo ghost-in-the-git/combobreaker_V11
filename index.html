@@ -6671,9 +6671,11 @@
                     wave.enemyDef[i] = et.defence;
                 }
             }
-            if (regenHealed > 0) {
+            if (regenHealed > 0 && p.defence > 0) {
                 await addMessage(`<b>MECH</b> regenerates <b>${regenHealed} HP</b> and restores <b>DEF to ${remainingDefence}</b>`, 'player', { html: true, hpBar: { current: p.hp, max: p.maxHp, from: hpBeforeRegen }, defBar: { current: remainingDefence, max: p.defence, from: defBeforeRestore } });
-            } else {
+            } else if (regenHealed > 0) {
+                await addMessage(`<b>MECH</b> regenerates <b>${regenHealed} HP</b>`, 'player', { html: true, hpBar: { current: p.hp, max: p.maxHp, from: hpBeforeRegen } });
+            } else if (p.defence > 0) {
                 await addMessage(`<b>DEF</b> restored to <b>${remainingDefence}</b>.`, 'player', { html: true, hpBar: { current: p.hp, max: p.maxHp }, defBar: { current: remainingDefence, max: p.defence, from: defBeforeRestore } });
             }
 
