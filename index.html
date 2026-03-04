@@ -3944,6 +3944,7 @@
                 remaining: enemyCount,
                 currentTarget: 1, // Which enemy we're fighting (1-indexed)
                 enemyHp: Array(enemyCount).fill(enemyType.hp), // Per-enemy HP tracking
+                enemyDef: Array(enemyCount).fill(enemyType.defence), // Per-enemy DEF tracking
                 turn: 0
             };
         }
@@ -5767,6 +5768,7 @@
                 remaining: enemyCount,
                 currentTarget: 1,
                 enemyHp: Array(enemyCount).fill(ambushEnemy.hp),
+                enemyDef: Array(enemyCount).fill(ambushEnemy.defence),
                 turn: 0
             };
             game.isAmbush = true;
@@ -5919,6 +5921,7 @@
                 remaining: 1,
                 currentTarget: 1,
                 enemyHp: [bossEnemy.hp],
+                enemyDef: [bossEnemy.defence],
                 turn: 0
             };
             game.isBossEncounter = true;
@@ -6429,33 +6432,91 @@
                 if (breakerTriggered) {
                     rawAttack *= warTriggered ? 4 : 2;
                 }
-                const enemyDef = strikeTriggered ? 0 : et.defence;
-                const playerDamage = calculateDamage(rawAttack, enemyDef);
+                const ignoreDefence = strikeTriggered;
+
+                // Helper: apply player attack to a specific enemy, depleting defence then HP
+                // Returns the actual HP damage dealt
+                function applyPlayerAttack(idx) {
+                    if (ignoreDefence) {
+                        const dmg = rawAttack;
+                        wave.enemyHp[idx] = Math.max(0, wave.enemyHp[idx] - dmg);
+                        return { absorbed: 0, hpDmg: dmg };
+                    }
+                    const def = wave.enemyDef[idx];
+                    if (def >= rawAttack) {
+                        wave.enemyDef[idx] -= rawAttack;
+                        return { absorbed: rawAttack, hpDmg: 0 };
+                    } else if (def > 0) {
+                        const overflow = rawAttack - def;
+                        wave.enemyDef[idx] = 0;
+                        wave.enemyHp[idx] = Math.max(0, wave.enemyHp[idx] - overflow);
+                        return { absorbed: def, hpDmg: overflow };
+                    } else {
+                        wave.enemyHp[idx] = Math.max(0, wave.enemyHp[idx] - rawAttack);
+                        return { absorbed: 0, hpDmg: rawAttack };
+                    }
+                }
 
                 // Helper: narrate a player attack against an enemy the same way enemy→player works
-                async function narratePlayerAttack(targetLabel, rawAtk, def, dmg, opts) {
+                async function narratePlayerAttack(targetLabel, idx, prevHp, prevDef) {
                     const actionVerb = isAoe ? 'fires at' : 'attacks';
                     const modLabel = mod ? ` with <b>${mod.name.toUpperCase()}</b>` : '';
-                    const barData = { ...(opts.hpBarData || {}) };
-                    if (def > 0) {
-                        barData.enemyDefBar = { current: def, max: def };
+                    const absorbed = prevDef - wave.enemyDef[idx];
+                    const hpDmg = prevHp - wave.enemyHp[idx];
+                    const barData = {
+                        enemyHpBar: { current: wave.enemyHp[idx], max: et.hp, from: prevHp }
+                    };
+                    if (!ignoreDefence && et.defence > 0) {
+                        barData.enemyDefBar = { current: wave.enemyDef[idx], max: et.defence, from: prevDef };
                     }
                     // 1. Announce raw attack
-                    await addMessage(`<b>MECH</b> ${actionVerb} <b>${targetLabel}</b>${modLabel} for <b>${rawAtk} DMG</b>`, 'player', { html: true });
+                    await addMessage(`<b>MECH</b> ${actionVerb} <b>${targetLabel}</b>${modLabel} for <b>${rawAttack} DMG</b>`, 'player', { html: true });
 
                     // 2. Defence response + result
-                    if (def > 0 && def >= rawAtk) {
+                    if (absorbed > 0 && hpDmg <= 0) {
                         // Fully blocked
-                        await addMessage(`<b>${targetLabel} DEF</b> blocks <b>${rawAtk} DMG</b>`, 'enemy', { html: true, ...barData });
-                    } else if (def > 0) {
+                        await addMessage(`<b>${targetLabel} DEF</b> blocks <b>${rawAttack} DMG</b>`, 'enemy', { html: true, ...barData });
+                    } else if (absorbed > 0) {
                         // Partial block
-                        await addMessage(`<b>${targetLabel} DEF</b> absorbs <b>${def} DMG</b> - but <b>${dmg} DMG</b> is dealt`, 'enemy', { html: true, ...barData });
-                    } else if (dmg > 0) {
+                        await addMessage(`<b>${targetLabel} DEF</b> absorbs <b>${absorbed} DMG</b> - but <b>${hpDmg} DMG</b> is dealt`, 'enemy', { html: true, ...barData });
+                    } else if (hpDmg > 0) {
                         // No defence
-                        await addMessage(`<b>${targetLabel}</b> takes <b>${dmg} DMG</b>`, 'enemy', { html: true, ...barData });
+                        await addMessage(`<b>${targetLabel}</b> takes <b>${hpDmg} DMG</b>`, 'enemy', { html: true, ...barData });
                     } else {
                         await addMessage(`<b>${targetLabel}</b> takes <b>0 DMG</b>`, 'enemy', { html: true, ...barData });
                     }
+                }
+
+                // Helper: apply attack to an enemy and narrate (handles crush AoE splash too)
+                async function attackEnemy(idx, label) {
+                    const prevHp = wave.enemyHp[idx];
+                    const prevDef = wave.enemyDef[idx];
+                    applyPlayerAttack(idx);
+
+                    if (wave.enemyHp[idx] <= 0) {
+                        wave.remaining--;
+                        const xpBonus = getXpBonus();
+                        const killXp = et.xp + xpBonus;
+                        wave.xpEarned = (wave.xpEarned || 0) + killXp;
+                        await narratePlayerAttack(label, idx, prevHp, prevDef);
+                        await addMessage(`[KILL CONFIRMED] (+<b>${killXp} SIL</b>)`, 'enemy', { html: true, overlay: 'images/fire2.gif' });
+                        return true; // killed
+                    } else {
+                        await narratePlayerAttack(label, idx, prevHp, prevDef);
+                        return false; // survived
+                    }
+                }
+
+                // Helper: crushbreaker AoE splash on all other alive enemies
+                async function crushSplash(skipIdx) {
+                    for (let c = 1; c <= wave.count; c++) {
+                        const cidx = c - 1;
+                        if (cidx === skipIdx) continue;
+                        if (wave.enemyHp[cidx] <= 0) continue;
+                        const crushLabel = `${et.name.toUpperCase()} #${c}`;
+                        await attackEnemy(cidx, crushLabel);
+                    }
+                    advanceToNextAlive(wave);
                 }
 
                 // AoE: attack every alive enemy once per attack count
@@ -6466,21 +6527,8 @@
                             if (wave.enemyHp[t - 1] <= 0) continue; // Skip dead enemies
 
                             const label = `${et.name.toUpperCase()} #${t}`;
-                            const idx = t - 1;
-                            const prevEnemyHp = wave.enemyHp[idx];
-                            wave.enemyHp[idx] = Math.max(0, wave.enemyHp[idx] - playerDamage);
-
-                            if (wave.enemyHp[idx] <= 0) {
-                                wave.remaining--;
-                                const xpBonus = getXpBonus();
-                                const killXp = et.xp + xpBonus;
-                                wave.xpEarned = (wave.xpEarned || 0) + killXp;
-                                await narratePlayerAttack(label, rawAttack, enemyDef, playerDamage, { hpBarData: { enemyHpBar: { current: 0, max: et.hp, from: prevEnemyHp } } });
-                                await addMessage(`[KILL CONFIRMED] (+<b>${killXp} SIL</b>)`, 'enemy', { html: true, overlay: 'images/fire2.gif' });
-                                if (t === wave.currentTarget) advanceToNextAlive(wave);
-                            } else {
-                                await narratePlayerAttack(label, rawAttack, enemyDef, playerDamage, { hpBarData: { enemyHpBar: { current: wave.enemyHp[idx], max: et.hp, from: prevEnemyHp } } });
-                            }
+                            const killed = await attackEnemy(t - 1, label);
+                            if (killed && t === wave.currentTarget) advanceToNextAlive(wave);
                         }
                     }
                     if (wave.remaining <= 0) { endBattle(true); return; }
@@ -6493,63 +6541,21 @@
 
                         const idx = wave.currentTarget - 1;
                         const label = `${et.name.toUpperCase()} #${wave.currentTarget}`;
-                        const prevEnemyHp = wave.enemyHp[idx];
-                        wave.enemyHp[idx] = Math.max(0, wave.enemyHp[idx] - playerDamage);
+                        const killed = await attackEnemy(idx, label);
 
-                        if (wave.enemyHp[idx] <= 0) {
-                            wave.remaining--;
-                            const xpBonus = getXpBonus();
-                            const killXp = et.xp + xpBonus;
-                            wave.xpEarned = (wave.xpEarned || 0) + killXp;
-                            await narratePlayerAttack(label, rawAttack, enemyDef, playerDamage, { hpBarData: { enemyHpBar: { current: 0, max: et.hp, from: prevEnemyHp } } });
-                            await addMessage(`[KILL CONFIRMED] (+<b>${killXp} SIL</b>)`, 'enemy', { html: true, overlay: 'images/fire2.gif' });
+                        if (killed) {
                             advanceToNextAlive(wave);
 
                             // Crushbreaker AoE: damage all other remaining enemies (first attack only)
                             if (crushTriggered && atk === 1 && wave.remaining > 0) {
-                                for (let c = 1; c <= wave.count; c++) {
-                                    if (wave.enemyHp[c - 1] <= 0) continue;
-                                    const cidx = c - 1;
-                                    const prevCrushHp = wave.enemyHp[cidx];
-                                    wave.enemyHp[cidx] = Math.max(0, wave.enemyHp[cidx] - playerDamage);
-
-                                    if (wave.enemyHp[cidx] <= 0) {
-                                        wave.remaining--;
-                                        const xpBonus2 = getXpBonus();
-                                        const killXp2 = et.xp + xpBonus2;
-                                        wave.xpEarned = (wave.xpEarned || 0) + killXp2;
-                                        await addMessage(`<b>${et.name.toUpperCase()} #${c}</b> takes <b>${playerDamage} DMG</b> [KILL CONFIRMED] (+<b>${killXp2} SIL</b>)`, 'enemy', { html: true, overlay: 'images/fire2.gif', enemyHpBar: { current: 0, max: et.hp, from: prevCrushHp } });
-                                    } else {
-                                        await addMessage(`<b>${et.name.toUpperCase()} #${c}</b> takes <b>${playerDamage} DMG</b>`, 'enemy', { html: true, enemyHpBar: { current: wave.enemyHp[cidx], max: et.hp, from: prevCrushHp } });
-                                    }
-                                }
-                                advanceToNextAlive(wave);
+                                await crushSplash(-1); // no skip — primary target is dead
                             }
 
                             if (wave.remaining <= 0) { endBattle(true); return; }
                         } else {
-                            await narratePlayerAttack(label, rawAttack, enemyDef, playerDamage, { hpBarData: { enemyHpBar: { current: wave.enemyHp[idx], max: et.hp, from: prevEnemyHp } } });
-
                             // Crushbreaker AoE: damage all other remaining enemies (first attack only)
                             if (crushTriggered && atk === 1 && wave.remaining > 1) {
-                                for (let c = 1; c <= wave.count; c++) {
-                                    if (c === wave.currentTarget) continue;
-                                    if (wave.enemyHp[c - 1] <= 0) continue;
-                                    const cidx = c - 1;
-                                    const prevCrushHp = wave.enemyHp[cidx];
-                                    wave.enemyHp[cidx] = Math.max(0, wave.enemyHp[cidx] - playerDamage);
-
-                                    if (wave.enemyHp[cidx] <= 0) {
-                                        wave.remaining--;
-                                        const xpBonus2 = getXpBonus();
-                                        const killXp2 = et.xp + xpBonus2;
-                                        wave.xpEarned = (wave.xpEarned || 0) + killXp2;
-                                        await addMessage(`<b>${et.name.toUpperCase()} #${c}</b> takes <b>${playerDamage} DMG</b> [KILL CONFIRMED] (+<b>${killXp2} SIL</b>)`, 'enemy', { html: true, overlay: 'images/fire2.gif', enemyHpBar: { current: 0, max: et.hp, from: prevCrushHp } });
-                                    } else {
-                                        await addMessage(`<b>${et.name.toUpperCase()} #${c}</b> takes <b>${playerDamage} DMG</b>`, 'enemy', { html: true, enemyHpBar: { current: wave.enemyHp[cidx], max: et.hp, from: prevCrushHp } });
-                                    }
-                                }
-                                advanceToNextAlive(wave);
+                                await crushSplash(idx);
                             }
                         }
                     }
@@ -6658,6 +6664,13 @@
             const defBeforeRestore = remainingDefence;
             remainingDefence = p.defence;
             wave.remainingDefence = remainingDefence;
+
+            // Restore enemy defence for all alive enemies
+            for (let i = 0; i < wave.count; i++) {
+                if (wave.enemyHp[i] > 0) {
+                    wave.enemyDef[i] = et.defence;
+                }
+            }
             if (regenHealed > 0) {
                 await addMessage(`<b>MECH</b> regenerates <b>${regenHealed} HP</b> and restores <b>DEF to ${remainingDefence}</b>`, 'player', { html: true, hpBar: { current: p.hp, max: p.maxHp, from: hpBeforeRegen }, defBar: { current: remainingDefence, max: p.defence, from: defBeforeRestore } });
             } else {
