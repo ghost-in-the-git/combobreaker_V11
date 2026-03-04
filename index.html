@@ -4730,7 +4730,7 @@
                     if (item.isForged) registerForgedItem(item);
                     addItemToInventory(item);
                 }
-                if (!item.isForgerPreview) {
+                if (!item.isForgerPreview && !item.category) {
                     const scrapMsg = item.scrapCost ? ` + ${item.scrapCost} Scrap` : '';
                     addMessage(`Purchased: ${item.name} for ${count} ${mineral}${scrapMsg}`, 'victory');
                 }
@@ -4758,7 +4758,9 @@
                 } else {
                     addItemToInventory(item);
                 }
-                addMessage(`Purchased: ${item.name} for ${item.cost} Silicon`, 'victory');
+                if (!item.category) {
+                    addMessage(`Purchased: ${item.name} for ${item.cost} Silicon`, 'victory');
+                }
             }
             updateStats();
             updateMiningUI();
