@@ -6371,9 +6371,6 @@
                     updateStats();
                 }
 
-                // Flavour message
-                const flavours = mod.flavour;
-                await addMessage(flavours[Math.floor(Math.random() * flavours.length)], 'player');
             }
 
             // Determine breaker procs this turn (gated behind owning decrypted keys)
@@ -6430,8 +6427,9 @@
                 // Helper: narrate a player attack against an enemy the same way enemy→player works
                 async function narratePlayerAttack(targetLabel, rawAtk, def, dmg, opts) {
                     const actionVerb = isAoe ? 'fires at' : 'attacks';
+                    const modLabel = mod ? ` with <b>${mod.name.toUpperCase()}</b>` : '';
                     // 1. Announce raw attack
-                    await addMessage(`<b>MECH</b> ${actionVerb} <b>${targetLabel}</b> for <b>${rawAtk} DMG</b>`, 'player', { html: true });
+                    await addMessage(`<b>MECH</b> ${actionVerb} <b>${targetLabel}</b>${modLabel} for <b>${rawAtk} DMG</b>`, 'player', { html: true });
 
                     // 2. Defence response + result
                     if (def > 0 && def >= rawAtk) {
