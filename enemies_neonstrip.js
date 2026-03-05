@@ -8,6 +8,7 @@
 const ENEMIES_NEONSTRIP = [
     {
         name: "Holo Decoy Swarm",
+        attackName: "Prism Burst",
         element: 'light',
         defenceType: 'magnetic',
         attack: 35,
@@ -24,6 +25,7 @@ const ENEMIES_NEONSTRIP = [
     },
     {
         name: "Casino Enforcer",
+        attackName: "Knuckle Duster",
         element: 'flesh',
         defenceType: 'physical',
         attack: 38,
@@ -40,6 +42,7 @@ const ENEMIES_NEONSTRIP = [
     },
     {
         name: "Neon Stalker",
+        attackName: "Voltage Fang",
         element: 'volt',
         defenceType: 'physical',
         attack: 50,
@@ -56,6 +59,7 @@ const ENEMIES_NEONSTRIP = [
     },
     {
         name: "Syndicate Heavy",
+        attackName: "Enforcer Round",
         element: 'steel',
         defenceType: 'physical',
         attack: 45,
@@ -72,6 +76,7 @@ const ENEMIES_NEONSTRIP = [
     },
     {
         name: "VIP Bodyguard",
+        attackName: "Bone Breaker",
         element: 'flesh',
         defenceType: 'physical',
         attack: 55,
@@ -88,6 +93,7 @@ const ENEMIES_NEONSTRIP = [
     },
     {
         name: "Pit Boss Mech",
+        attackName: "House Rules",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 65,

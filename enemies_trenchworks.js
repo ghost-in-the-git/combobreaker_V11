@@ -9,6 +9,7 @@
 const ENEMIES_TRENCHWORKS = [
     {
         name: "Entrenched Sentry",
+        attackName: "Foxhole Burst",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 48,
@@ -25,6 +26,7 @@ const ENEMIES_TRENCHWORKS = [
     },
     {
         name: "Trench Gunner",
+        attackName: "Suppressing Fire",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 58,
@@ -41,6 +43,7 @@ const ENEMIES_TRENCHWORKS = [
     },
     {
         name: "Burrower Frame",
+        attackName: "Drill Charge",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 55,
@@ -57,6 +60,7 @@ const ENEMIES_TRENCHWORKS = [
     },
     {
         name: "Turret Nest Controller",
+        attackName: "Chain Lightning",
         element: 'volt',
         defenceType: 'magnetic',
         attack: 70,
@@ -73,6 +77,7 @@ const ENEMIES_TRENCHWORKS = [
     },
     {
         name: "Armoured Dugout Guard",
+        attackName: "Fortified Shot",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 60,
@@ -89,6 +94,7 @@ const ENEMIES_TRENCHWORKS = [
     },
     {
         name: "Trenchmaster",
+        attackName: "Artillery Call",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 82,

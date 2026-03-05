@@ -8,6 +8,7 @@
 const ENEMIES_ORBITALSTATION = [
     {
         name: "Micro Drone Cluster",
+        attackName: "Swarm Shock",
         element: 'volt',
         defenceType: 'magnetic',
         attack: 10,
@@ -24,6 +25,7 @@ const ENEMIES_ORBITALSTATION = [
     },
     {
         name: "Station Security Bot",
+        attackName: "Lockdown Shot",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 14,
@@ -40,6 +42,7 @@ const ENEMIES_ORBITALSTATION = [
     },
     {
         name: "Void Welder",
+        attackName: "Null Torch",
         element: 'void',
         defenceType: 'magnetic',
         attack: 18,
@@ -56,6 +59,7 @@ const ENEMIES_ORBITALSTATION = [
     },
     {
         name: "Orbital Sentry",
+        attackName: "Kinetic Lance",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 16,
@@ -72,6 +76,7 @@ const ENEMIES_ORBITALSTATION = [
     },
     {
         name: "Zero-G Interceptor",
+        attackName: "Cryo Lance",
         element: 'cryo',
         defenceType: 'magnetic',
         attack: 22,
@@ -88,6 +93,7 @@ const ENEMIES_ORBITALSTATION = [
     },
     {
         name: "Hijacked Defense Turret",
+        attackName: "Thermal Salvo",
         element: 'fire',
         defenceType: 'magnetic',
         attack: 25,

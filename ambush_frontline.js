@@ -8,6 +8,7 @@
 const AMBUSH_FRONTLINE = [
     {
         name: "Patrol Frame",
+        attackName: "Gatling Burst",
         attack: 55,
         defence: 15,
         hp: 110,
@@ -22,6 +23,7 @@ const AMBUSH_FRONTLINE = [
     },
     {
         name: "Enforcer Mech",
+        attackName: "Heavy Slug",
         attack: 65,
         defence: 20,
         hp: 114,
@@ -36,6 +38,7 @@ const AMBUSH_FRONTLINE = [
     },
     {
         name: "Shock Lancer",
+        attackName: "Volt Spear",
         attack: 85,
         defence: 16,
         hp: 112,
@@ -50,6 +53,7 @@ const AMBUSH_FRONTLINE = [
     },
     {
         name: "Siege Breaker",
+        attackName: "Siege Round",
         attack: 70,
         defence: 30,
         hp: 116,
@@ -64,6 +68,7 @@ const AMBUSH_FRONTLINE = [
     },
     {
         name: "Black Ops Frame",
+        attackName: "Shadow Strike",
         attack: 100,
         defence: 35,
         hp: 118,
@@ -78,6 +83,7 @@ const AMBUSH_FRONTLINE = [
     },
     {
         name: "Squadron Commander",
+        attackName: "Command Salvo",
         attack: 90,
         defence: 40,
         hp: 120,

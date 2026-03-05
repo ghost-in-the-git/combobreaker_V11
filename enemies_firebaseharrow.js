@@ -9,6 +9,7 @@
 const ENEMIES_FIREBASEHARROW = [
     {
         name: "Artillery Drone",
+        attackName: "Incendiary Shell",
         element: 'fire',
         defenceType: 'magnetic',
         attack: 52,
@@ -25,6 +26,7 @@ const ENEMIES_FIREBASEHARROW = [
     },
     {
         name: "Firebase Sentry",
+        attackName: "Hardpoint Blast",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 62,
@@ -41,6 +43,7 @@ const ENEMIES_FIREBASEHARROW = [
     },
     {
         name: "Shell Loader Mech",
+        attackName: "Payload Slam",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 68,
@@ -57,6 +60,7 @@ const ENEMIES_FIREBASEHARROW = [
     },
     {
         name: "Spotter Frame",
+        attackName: "Targeting Shock",
         element: 'volt',
         defenceType: 'magnetic',
         attack: 78,
@@ -73,6 +77,7 @@ const ENEMIES_FIREBASEHARROW = [
     },
     {
         name: "Bombardment Platform",
+        attackName: "Firestorm",
         element: 'fire',
         defenceType: 'magnetic',
         attack: 88,
@@ -89,6 +94,7 @@ const ENEMIES_FIREBASEHARROW = [
     },
     {
         name: "Firebase Commander",
+        attackName: "Command Strike",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 85,

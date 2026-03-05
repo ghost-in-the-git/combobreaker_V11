@@ -9,6 +9,7 @@
 const AMBUSH_IRONVEIL = [
     {
         name: "Barricade Welder",
+        attackName: "Welding Torch",
         attack: 55,
         defence: 22,
         hp: 106,
@@ -23,6 +24,7 @@ const AMBUSH_IRONVEIL = [
     },
     {
         name: "Veil Enforcer",
+        attackName: "Barricade Slam",
         attack: 68,
         defence: 24,
         hp: 110,
@@ -37,6 +39,7 @@ const AMBUSH_IRONVEIL = [
     },
     {
         name: "Staging Ground Raider",
+        attackName: "Breach Charge",
         attack: 80,
         defence: 16,
         hp: 108,
@@ -51,6 +54,7 @@ const AMBUSH_IRONVEIL = [
     },
     {
         name: "Scrap Wall Titan",
+        attackName: "Iron Crush",
         attack: 65,
         defence: 34,
         hp: 114,
@@ -65,6 +69,7 @@ const AMBUSH_IRONVEIL = [
     },
     {
         name: "Breach Denial Unit",
+        attackName: "Denial Pulse",
         attack: 90,
         defence: 28,
         hp: 112,
@@ -79,6 +84,7 @@ const AMBUSH_IRONVEIL = [
     },
     {
         name: "Iron Veil Warden",
+        attackName: "Fortification Strike",
         attack: 92,
         defence: 38,
         hp: 118,

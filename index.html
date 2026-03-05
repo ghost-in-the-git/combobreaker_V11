@@ -6598,7 +6598,8 @@
             for (let i = 1; i <= wave.count; i++) {
                 if (wave.enemyHp[i - 1] <= 0) continue; // Skip dead enemies
 
-                await addMessage(`<b>${et.name.toUpperCase()} #${i}</b> attacks <b>MECH</b> for <b>${et.attack} DMG</b>`, 'enemy', { html: true });
+                const atkName = et.attackName ? ` with <b>${et.attackName.toUpperCase()}</b>` : '';
+                await addMessage(`<b>${et.name.toUpperCase()} #${i}</b> attacks${atkName} for <b>${et.attack} DMG</b>`, 'enemy', { html: true });
 
                 // Visionbreaker: chance to completely avoid this attack
                 const visionTriggered = hasBreaker("Ghost's Visionbreaker Key") && Math.random() * 100 < getBreaker();

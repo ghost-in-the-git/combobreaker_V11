@@ -7,6 +7,7 @@
 const AMBUSH_SCRAPYARD = [
     {
         name: "Scout",
+        attackName: "Scrap Bolt",
         attack: 2,
         defence: 0,
         hp: 2,
@@ -21,6 +22,7 @@ const AMBUSH_SCRAPYARD = [
     },
     {
         name: "Heavy Tank",
+        attackName: "Cannon Shot",
         attack: 1,
         defence: 2,
         hp: 9,
@@ -35,6 +37,7 @@ const AMBUSH_SCRAPYARD = [
     },
     {
         name: "Enforcer",
+        attackName: "Steel Slug",
         attack: 5,
         defence: 1,
         hp: 6,
@@ -49,6 +52,7 @@ const AMBUSH_SCRAPYARD = [
     },
     {
         name: "Scrap Drone",
+        attackName: "Arc Zap",
         attack: 3,
         defence: 0,
         hp: 4,
@@ -63,6 +67,7 @@ const AMBUSH_SCRAPYARD = [
     },
     {
         name: "Junkyard Golem",
+        attackName: "Scrap Slam",
         attack: 6,
         defence: 3,
         hp: 8,
@@ -77,6 +82,7 @@ const AMBUSH_SCRAPYARD = [
     },
     {
         name: "Destroyer",
+        attackName: "Incendiary Barrage",
         attack: 10,
         defence: 5,
         hp: 10,

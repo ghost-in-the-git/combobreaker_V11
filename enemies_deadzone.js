@@ -8,6 +8,7 @@
 const ENEMIES_DEADZONE = [
     {
         name: "Corrupted Probe",
+        attackName: "Void Pulse",
         element: 'void',
         defenceType: 'magnetic',
         attack: 45,
@@ -24,6 +25,7 @@ const ENEMIES_DEADZONE = [
     },
     {
         name: "Toxic Shambler",
+        attackName: "Bile Spray",
         element: 'acid',
         defenceType: 'physical',
         attack: 50,
@@ -40,6 +42,7 @@ const ENEMIES_DEADZONE = [
     },
     {
         name: "Blight Walker",
+        attackName: "Corrosion Wave",
         element: 'acid',
         defenceType: 'physical',
         attack: 60,
@@ -56,6 +59,7 @@ const ENEMIES_DEADZONE = [
     },
     {
         name: "Kill-Swarm Node",
+        attackName: "Swarm Overrun",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 70,
@@ -72,6 +76,7 @@ const ENEMIES_DEADZONE = [
     },
     {
         name: "Corrupted Warden",
+        attackName: "Null Crush",
         element: 'void',
         defenceType: 'magnetic',
         attack: 55,
@@ -88,6 +93,7 @@ const ENEMIES_DEADZONE = [
     },
     {
         name: "Plague Engine",
+        attackName: "Toxic Eruption",
         element: 'acid',
         defenceType: 'magnetic',
         attack: 80,

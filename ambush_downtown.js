@@ -7,6 +7,7 @@
 const AMBUSH_DOWNTOWN = [
     {
         name: "Street Modder",
+        attackName: "Jury-Rigged Blast",
         attack: 7,
         defence: 1,
         hp: 20,
@@ -21,6 +22,7 @@ const AMBUSH_DOWNTOWN = [
     },
     {
         name: "Corp Security Drone",
+        attackName: "Taser Burst",
         attack: 10,
         defence: 3,
         hp: 22,
@@ -35,6 +37,7 @@ const AMBUSH_DOWNTOWN = [
     },
     {
         name: "Neon Ronin",
+        attackName: "Lightblade Slash",
         attack: 14,
         defence: 2,
         hp: 24,
@@ -49,6 +52,7 @@ const AMBUSH_DOWNTOWN = [
     },
     {
         name: "Sentinel",
+        attackName: "Railgun Pulse",
         attack: 12,
         defence: 4,
         hp: 28,
@@ -63,6 +67,7 @@ const AMBUSH_DOWNTOWN = [
     },
     {
         name: "Corporate Mech Squad",
+        attackName: "Suppression Volley",
         attack: 10,
         defence: 5,
         hp: 30,
@@ -77,6 +82,7 @@ const AMBUSH_DOWNTOWN = [
     },
     {
         name: "Black Market Enforcer",
+        attackName: "Gut Punch",
         attack: 18,
         defence: 4,
         hp: 26,

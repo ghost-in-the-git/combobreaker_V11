@@ -8,6 +8,7 @@
 const ENEMIES_FRONTLINE = [
     {
         name: "Patrol Frame",
+        attackName: "Gatling Burst",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 55,
@@ -24,6 +25,7 @@ const ENEMIES_FRONTLINE = [
     },
     {
         name: "Enforcer Mech",
+        attackName: "Heavy Slug",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 65,
@@ -40,6 +42,7 @@ const ENEMIES_FRONTLINE = [
     },
     {
         name: "Shock Lancer",
+        attackName: "Volt Spear",
         element: 'volt',
         defenceType: 'magnetic',
         attack: 85,
@@ -56,6 +59,7 @@ const ENEMIES_FRONTLINE = [
     },
     {
         name: "Siege Breaker",
+        attackName: "Siege Round",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 70,
@@ -72,6 +76,7 @@ const ENEMIES_FRONTLINE = [
     },
     {
         name: "Black Ops Frame",
+        attackName: "Shadow Strike",
         element: 'void',
         defenceType: 'magnetic',
         attack: 100,
@@ -88,6 +93,7 @@ const ENEMIES_FRONTLINE = [
     },
     {
         name: "Squadron Commander",
+        attackName: "Command Salvo",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 90,

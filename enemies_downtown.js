@@ -8,6 +8,7 @@
 const ENEMIES_DOWNTOWN = [
     {
         name: "Street Modder",
+        attackName: "Jury-Rigged Blast",
         element: 'flesh',
         defenceType: 'physical',
         attack: 7,
@@ -24,6 +25,7 @@ const ENEMIES_DOWNTOWN = [
     },
     {
         name: "Corp Security Drone",
+        attackName: "Taser Burst",
         element: 'volt',
         defenceType: 'magnetic',
         attack: 10,
@@ -40,6 +42,7 @@ const ENEMIES_DOWNTOWN = [
     },
     {
         name: "Neon Ronin",
+        attackName: "Lightblade Slash",
         element: 'light',
         defenceType: 'physical',
         attack: 14,
@@ -56,6 +59,7 @@ const ENEMIES_DOWNTOWN = [
     },
     {
         name: "Sentinel",
+        attackName: "Railgun Pulse",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 12,
@@ -72,6 +76,7 @@ const ENEMIES_DOWNTOWN = [
     },
     {
         name: "Corporate Mech Squad",
+        attackName: "Suppression Volley",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 10,
@@ -88,6 +93,7 @@ const ENEMIES_DOWNTOWN = [
     },
     {
         name: "Black Market Enforcer",
+        attackName: "Gut Punch",
         element: 'flesh',
         defenceType: 'physical',
         attack: 18,

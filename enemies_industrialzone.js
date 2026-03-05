@@ -8,6 +8,7 @@
 const ENEMIES_INDUSTRIALZONE = [
     {
         name: "Assembly Drone",
+        attackName: "Rivet Gun",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 24,
@@ -24,6 +25,7 @@ const ENEMIES_INDUSTRIALZONE = [
     },
     {
         name: "Loader Mech",
+        attackName: "Piston Crush",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 20,
@@ -40,6 +42,7 @@ const ENEMIES_INDUSTRIALZONE = [
     },
     {
         name: "Arc Welder Unit",
+        attackName: "Voltage Arc",
         element: 'volt',
         defenceType: 'magnetic',
         attack: 35,
@@ -56,6 +59,7 @@ const ENEMIES_INDUSTRIALZONE = [
     },
     {
         name: "Furnace Guardian",
+        attackName: "Molten Blast",
         element: 'fire',
         defenceType: 'magnetic',
         attack: 30,
@@ -72,6 +76,7 @@ const ENEMIES_INDUSTRIALZONE = [
     },
     {
         name: "Overclocked Foreman",
+        attackName: "Surge Fist",
         element: 'volt',
         defenceType: 'magnetic',
         attack: 40,
@@ -88,6 +93,7 @@ const ENEMIES_INDUSTRIALZONE = [
     },
     {
         name: "Reactor Sentinel",
+        attackName: "Core Meltdown",
         element: 'fire',
         defenceType: 'magnetic',
         attack: 45,

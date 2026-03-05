@@ -7,6 +7,7 @@
 const AMBUSH_WASTELAND = [
     {
         name: "Rad Roach Swarm",
+        attackName: "Acid Spray",
         attack: 14,
         defence: 2,
         hp: 40,
@@ -21,6 +22,7 @@ const AMBUSH_WASTELAND = [
     },
     {
         name: "Dust Crawler",
+        attackName: "Crushing Maw",
         attack: 18,
         defence: 5,
         hp: 46,
@@ -35,6 +37,7 @@ const AMBUSH_WASTELAND = [
     },
     {
         name: "Irradiated Scavenger",
+        attackName: "Corrosive Slash",
         attack: 22,
         defence: 4,
         hp: 44,
@@ -49,6 +52,7 @@ const AMBUSH_WASTELAND = [
     },
     {
         name: "Sand Stalker",
+        attackName: "Phase Lunge",
         attack: 28,
         defence: 3,
         hp: 42,
@@ -63,6 +67,7 @@ const AMBUSH_WASTELAND = [
     },
     {
         name: "Wasteland Brute",
+        attackName: "Bone Hammer",
         attack: 20,
         defence: 9,
         hp: 48,
@@ -77,6 +82,7 @@ const AMBUSH_WASTELAND = [
     },
     {
         name: "Irradiated Colossus",
+        attackName: "Meltdown Slam",
         attack: 30,
         defence: 7,
         hp: 50,

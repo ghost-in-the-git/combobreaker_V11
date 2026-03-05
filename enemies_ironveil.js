@@ -9,6 +9,7 @@
 const ENEMIES_IRONVEIL = [
     {
         name: "Barricade Welder",
+        attackName: "Welding Torch",
         element: 'fire',
         defenceType: 'magnetic',
         attack: 55,
@@ -25,6 +26,7 @@ const ENEMIES_IRONVEIL = [
     },
     {
         name: "Veil Enforcer",
+        attackName: "Barricade Slam",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 68,
@@ -41,6 +43,7 @@ const ENEMIES_IRONVEIL = [
     },
     {
         name: "Staging Ground Raider",
+        attackName: "Breach Charge",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 80,
@@ -57,6 +60,7 @@ const ENEMIES_IRONVEIL = [
     },
     {
         name: "Scrap Wall Titan",
+        attackName: "Iron Crush",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 65,
@@ -73,6 +77,7 @@ const ENEMIES_IRONVEIL = [
     },
     {
         name: "Breach Denial Unit",
+        attackName: "Denial Pulse",
         element: 'volt',
         defenceType: 'magnetic',
         attack: 90,
@@ -89,6 +94,7 @@ const ENEMIES_IRONVEIL = [
     },
     {
         name: "Iron Veil Warden",
+        attackName: "Fortification Strike",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 92,

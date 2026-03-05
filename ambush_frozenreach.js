@@ -7,6 +7,7 @@
 const AMBUSH_FROZENREACH = [
     {
         name: "Frost Skimmer",
+        attackName: "Ice Shard",
         attack: 30,
         defence: 8,
         hp: 70,
@@ -21,6 +22,7 @@ const AMBUSH_FROZENREACH = [
     },
     {
         name: "Cryo Sentry",
+        attackName: "Frost Cannon",
         attack: 28,
         defence: 12,
         hp: 74,
@@ -35,6 +37,7 @@ const AMBUSH_FROZENREACH = [
     },
     {
         name: "Blizzard Drone",
+        attackName: "Whiteout Burst",
         attack: 40,
         defence: 9,
         hp: 72,
@@ -49,6 +52,7 @@ const AMBUSH_FROZENREACH = [
     },
     {
         name: "Glacial Prowler",
+        attackName: "Frozen Impale",
         attack: 45,
         defence: 11,
         hp: 76,
@@ -63,6 +67,7 @@ const AMBUSH_FROZENREACH = [
     },
     {
         name: "Permafrost Mauler",
+        attackName: "Glacial Hammer",
         attack: 38,
         defence: 16,
         hp: 78,
@@ -77,6 +82,7 @@ const AMBUSH_FROZENREACH = [
     },
     {
         name: "Cryo Warlord",
+        attackName: "Absolute Zero",
         attack: 55,
         defence: 17,
         hp: 80,

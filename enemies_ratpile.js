@@ -8,6 +8,7 @@
 const ENEMIES_RATPILE = [
     {
         name: "Silicon Rat",
+        attackName: "Gnaw",
         element: 'steel',
         defenceType: 'physical',
         attack: 1,
@@ -24,6 +25,7 @@ const ENEMIES_RATPILE = [
     },
     {
         name: "Bloated Rat",
+        attackName: "Toxic Bite",
         element: 'flesh',
         defenceType: 'physical',
         attack: 2,

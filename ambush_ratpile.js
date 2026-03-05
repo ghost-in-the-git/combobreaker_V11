@@ -7,6 +7,7 @@
 const AMBUSH_RATPILE = [
     {
         name: "Silicon Rat",
+        attackName: "Gnaw",
         attack: 1,
         defence: 0,
         hp: 1,
@@ -21,6 +22,7 @@ const AMBUSH_RATPILE = [
     },
     {
         name: "Bloated Rat",
+        attackName: "Toxic Bite",
         attack: 2,
         defence: 0,
         hp: 5,

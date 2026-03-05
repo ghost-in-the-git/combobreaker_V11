@@ -7,6 +7,7 @@
 const AMBUSH_ORBITALSTATION = [
     {
         name: "Micro Drone Cluster",
+        attackName: "Swarm Shock",
         attack: 10,
         defence: 2,
         hp: 30,
@@ -21,6 +22,7 @@ const AMBUSH_ORBITALSTATION = [
     },
     {
         name: "Station Security Bot",
+        attackName: "Lockdown Shot",
         attack: 14,
         defence: 4,
         hp: 34,
@@ -35,6 +37,7 @@ const AMBUSH_ORBITALSTATION = [
     },
     {
         name: "Void Welder",
+        attackName: "Null Torch",
         attack: 18,
         defence: 3,
         hp: 32,
@@ -49,6 +52,7 @@ const AMBUSH_ORBITALSTATION = [
     },
     {
         name: "Orbital Sentry",
+        attackName: "Kinetic Lance",
         attack: 16,
         defence: 6,
         hp: 38,
@@ -63,6 +67,7 @@ const AMBUSH_ORBITALSTATION = [
     },
     {
         name: "Zero-G Interceptor",
+        attackName: "Cryo Lance",
         attack: 22,
         defence: 4,
         hp: 36,
@@ -77,6 +82,7 @@ const AMBUSH_ORBITALSTATION = [
     },
     {
         name: "Hijacked Defense Turret",
+        attackName: "Thermal Salvo",
         attack: 25,
         defence: 7,
         hp: 40,

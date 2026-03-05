@@ -7,6 +7,7 @@
 const AMBUSH_NEONSTRIP = [
     {
         name: "Holo Decoy Swarm",
+        attackName: "Prism Burst",
         attack: 35,
         defence: 9,
         hp: 80,
@@ -21,6 +22,7 @@ const AMBUSH_NEONSTRIP = [
     },
     {
         name: "Casino Enforcer",
+        attackName: "Knuckle Duster",
         attack: 38,
         defence: 14,
         hp: 84,
@@ -35,6 +37,7 @@ const AMBUSH_NEONSTRIP = [
     },
     {
         name: "Neon Stalker",
+        attackName: "Voltage Fang",
         attack: 50,
         defence: 10,
         hp: 82,
@@ -49,6 +52,7 @@ const AMBUSH_NEONSTRIP = [
     },
     {
         name: "Syndicate Heavy",
+        attackName: "Enforcer Round",
         attack: 45,
         defence: 17,
         hp: 88,
@@ -63,6 +67,7 @@ const AMBUSH_NEONSTRIP = [
     },
     {
         name: "VIP Bodyguard",
+        attackName: "Bone Breaker",
         attack: 55,
         defence: 15,
         hp: 86,
@@ -77,6 +82,7 @@ const AMBUSH_NEONSTRIP = [
     },
     {
         name: "Pit Boss Mech",
+        attackName: "House Rules",
         attack: 65,
         defence: 22,
         hp: 90,

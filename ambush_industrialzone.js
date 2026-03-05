@@ -7,6 +7,7 @@
 const AMBUSH_INDUSTRIALZONE = [
     {
         name: "Assembly Drone",
+        attackName: "Rivet Gun",
         attack: 24,
         defence: 6,
         hp: 60,
@@ -21,6 +22,7 @@ const AMBUSH_INDUSTRIALZONE = [
     },
     {
         name: "Loader Mech",
+        attackName: "Piston Crush",
         attack: 20,
         defence: 10,
         hp: 66,
@@ -35,6 +37,7 @@ const AMBUSH_INDUSTRIALZONE = [
     },
     {
         name: "Arc Welder Unit",
+        attackName: "Voltage Arc",
         attack: 35,
         defence: 6,
         hp: 62,
@@ -49,6 +52,7 @@ const AMBUSH_INDUSTRIALZONE = [
     },
     {
         name: "Furnace Guardian",
+        attackName: "Molten Blast",
         attack: 30,
         defence: 12,
         hp: 68,
@@ -63,6 +67,7 @@ const AMBUSH_INDUSTRIALZONE = [
     },
     {
         name: "Overclocked Foreman",
+        attackName: "Surge Fist",
         attack: 40,
         defence: 9,
         hp: 64,
@@ -77,6 +82,7 @@ const AMBUSH_INDUSTRIALZONE = [
     },
     {
         name: "Reactor Sentinel",
+        attackName: "Core Meltdown",
         attack: 45,
         defence: 15,
         hp: 70,

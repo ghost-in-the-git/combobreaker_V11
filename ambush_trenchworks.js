@@ -9,6 +9,7 @@
 const AMBUSH_TRENCHWORKS = [
     {
         name: "Entrenched Sentry",
+        attackName: "Foxhole Burst",
         attack: 48,
         defence: 18,
         hp: 95,
@@ -23,6 +24,7 @@ const AMBUSH_TRENCHWORKS = [
     },
     {
         name: "Trench Gunner",
+        attackName: "Suppressing Fire",
         attack: 58,
         defence: 14,
         hp: 98,
@@ -37,6 +39,7 @@ const AMBUSH_TRENCHWORKS = [
     },
     {
         name: "Burrower Frame",
+        attackName: "Drill Charge",
         attack: 55,
         defence: 20,
         hp: 100,
@@ -51,6 +54,7 @@ const AMBUSH_TRENCHWORKS = [
     },
     {
         name: "Turret Nest Controller",
+        attackName: "Chain Lightning",
         attack: 70,
         defence: 12,
         hp: 96,
@@ -65,6 +69,7 @@ const AMBUSH_TRENCHWORKS = [
     },
     {
         name: "Armoured Dugout Guard",
+        attackName: "Fortified Shot",
         attack: 60,
         defence: 28,
         hp: 104,
@@ -79,6 +84,7 @@ const AMBUSH_TRENCHWORKS = [
     },
     {
         name: "Trenchmaster",
+        attackName: "Artillery Call",
         attack: 82,
         defence: 32,
         hp: 108,

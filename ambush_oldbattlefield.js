@@ -7,6 +7,7 @@
 const AMBUSH_OLDBATTLEFIELD = [
     {
         name: "Reactivated Scout",
+        attackName: "Burst Fire",
         attack: 4,
         defence: 0,
         hp: 10,
@@ -21,6 +22,7 @@ const AMBUSH_OLDBATTLEFIELD = [
     },
     {
         name: "Rusted Artillery Drone",
+        attackName: "Pyro Shot",
         attack: 8,
         defence: 1,
         hp: 12,
@@ -35,6 +37,7 @@ const AMBUSH_OLDBATTLEFIELD = [
     },
     {
         name: "Ghosted Warframe",
+        attackName: "Phantom Strike",
         attack: 10,
         defence: 2,
         hp: 14,
@@ -49,6 +52,7 @@ const AMBUSH_OLDBATTLEFIELD = [
     },
     {
         name: "Enforcer",
+        attackName: "Armour Piercer",
         attack: 12,
         defence: 3,
         hp: 18,
@@ -63,6 +67,7 @@ const AMBUSH_OLDBATTLEFIELD = [
     },
     {
         name: "Heavy Tank",
+        attackName: "Cannon Shot",
         attack: 6,
         defence: 5,
         hp: 20,
@@ -77,6 +82,7 @@ const AMBUSH_OLDBATTLEFIELD = [
     },
     {
         name: "Assassin",
+        attackName: "Void Blade",
         attack: 20,
         defence: 1,
         hp: 16,

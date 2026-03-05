@@ -10,6 +10,7 @@
 const AMBUSH_SIGNALPOINT = [
     {
         name: "Relay Guard",
+        attackName: "Signal Burst",
         attack: 58,
         defence: 20,
         hp: 112,
@@ -24,6 +25,7 @@ const AMBUSH_SIGNALPOINT = [
     },
     {
         name: "Signal Scrambler",
+        attackName: "Feedback Loop",
         attack: 72,
         defence: 18,
         hp: 114,
@@ -38,6 +40,7 @@ const AMBUSH_SIGNALPOINT = [
     },
     {
         name: "Frequency Hunter",
+        attackName: "Resonance Spike",
         attack: 88,
         defence: 16,
         hp: 110,
@@ -52,6 +55,7 @@ const AMBUSH_SIGNALPOINT = [
     },
     {
         name: "Uplink Sentinel",
+        attackName: "Broadband Slam",
         attack: 75,
         defence: 30,
         hp: 116,
@@ -66,6 +70,7 @@ const AMBUSH_SIGNALPOINT = [
     },
     {
         name: "Broadcast Override",
+        attackName: "Override Shock",
         attack: 95,
         defence: 32,
         hp: 118,
@@ -80,6 +85,7 @@ const AMBUSH_SIGNALPOINT = [
     },
     {
         name: "Signal Point Commander",
+        attackName: "Command Frequency",
         attack: 98,
         defence: 40,
         hp: 120,

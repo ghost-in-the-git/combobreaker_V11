@@ -9,6 +9,7 @@
 const AMBUSH_FIREBASEHARROW = [
     {
         name: "Artillery Drone",
+        attackName: "Incendiary Shell",
         attack: 52,
         defence: 16,
         hp: 100,
@@ -23,6 +24,7 @@ const AMBUSH_FIREBASEHARROW = [
     },
     {
         name: "Firebase Sentry",
+        attackName: "Hardpoint Blast",
         attack: 62,
         defence: 20,
         hp: 104,
@@ -37,6 +39,7 @@ const AMBUSH_FIREBASEHARROW = [
     },
     {
         name: "Shell Loader Mech",
+        attackName: "Payload Slam",
         attack: 68,
         defence: 18,
         hp: 106,
@@ -51,6 +54,7 @@ const AMBUSH_FIREBASEHARROW = [
     },
     {
         name: "Spotter Frame",
+        attackName: "Targeting Shock",
         attack: 78,
         defence: 14,
         hp: 102,
@@ -65,6 +69,7 @@ const AMBUSH_FIREBASEHARROW = [
     },
     {
         name: "Bombardment Platform",
+        attackName: "Firestorm",
         attack: 88,
         defence: 25,
         hp: 110,
@@ -79,6 +84,7 @@ const AMBUSH_FIREBASEHARROW = [
     },
     {
         name: "Firebase Commander",
+        attackName: "Command Strike",
         attack: 85,
         defence: 35,
         hp: 114,

@@ -7,6 +7,7 @@
 const AMBUSH_DEADZONE = [
     {
         name: "Corrupted Probe",
+        attackName: "Void Pulse",
         attack: 45,
         defence: 11,
         hp: 90,
@@ -21,6 +22,7 @@ const AMBUSH_DEADZONE = [
     },
     {
         name: "Toxic Shambler",
+        attackName: "Bile Spray",
         attack: 50,
         defence: 16,
         hp: 96,
@@ -35,6 +37,7 @@ const AMBUSH_DEADZONE = [
     },
     {
         name: "Blight Walker",
+        attackName: "Corrosion Wave",
         attack: 60,
         defence: 14,
         hp: 94,
@@ -49,6 +52,7 @@ const AMBUSH_DEADZONE = [
     },
     {
         name: "Kill-Swarm Node",
+        attackName: "Swarm Overrun",
         attack: 70,
         defence: 10,
         hp: 92,
@@ -63,6 +67,7 @@ const AMBUSH_DEADZONE = [
     },
     {
         name: "Corrupted Warden",
+        attackName: "Null Crush",
         attack: 55,
         defence: 22,
         hp: 98,
@@ -77,6 +82,7 @@ const AMBUSH_DEADZONE = [
     },
     {
         name: "Plague Engine",
+        attackName: "Toxic Eruption",
         attack: 80,
         defence: 27,
         hp: 100,

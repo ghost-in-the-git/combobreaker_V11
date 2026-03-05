@@ -8,6 +8,7 @@
 const ENEMIES_OLDBATTLEFIELD = [
     {
         name: "Reactivated Scout",
+        attackName: "Burst Fire",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 4,
@@ -24,6 +25,7 @@ const ENEMIES_OLDBATTLEFIELD = [
     },
     {
         name: "Rusted Artillery Drone",
+        attackName: "Pyro Shot",
         element: 'fire',
         defenceType: 'magnetic',
         attack: 8,
@@ -40,6 +42,7 @@ const ENEMIES_OLDBATTLEFIELD = [
     },
     {
         name: "Ghosted Warframe",
+        attackName: "Phantom Strike",
         element: 'void',
         defenceType: 'magnetic',
         attack: 10,
@@ -56,6 +59,7 @@ const ENEMIES_OLDBATTLEFIELD = [
     },
     {
         name: "Enforcer",
+        attackName: "Armour Piercer",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 12,
@@ -72,6 +76,7 @@ const ENEMIES_OLDBATTLEFIELD = [
     },
     {
         name: "Heavy Tank",
+        attackName: "Shell Blast",
         element: 'steel',
         defenceType: 'magnetic',
         attack: 6,
@@ -88,6 +93,7 @@ const ENEMIES_OLDBATTLEFIELD = [
     },
     {
         name: "Assassin",
+        attackName: "Void Blade",
         element: 'void',
         defenceType: 'magnetic',
         attack: 20,
