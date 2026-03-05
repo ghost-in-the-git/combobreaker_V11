@@ -59,6 +59,14 @@ const ENCOUNTERS_HOME = [
             {
                 question: "Tell me about HP.",
                 response: "'HP is your hull integrity. It hits zero, you're done.' He says it flatly. 'You get dragged back here, I patch you up, and whatever you were fighting is still out there.'\n\nHe taps your chest plate. 'Your max HP goes up when you upgrade it at the forge, same as any other stat. More HP means more room for mistakes. And you're going to make mistakes.'\n\n'In combat, the only way to get HP back is repair mods. Outside of combat, coming back here resets you to full.' He looks at you. 'Don't be proud about retreating. A wrecked mech learns nothing.'"
+            },
+            {
+                question: "How do zones work?",
+                response: "'The sector is broken into zones. Each one's different — different enemies, different people, different resources.' He pulls out a battered chart. 'The Ratpile is right underneath us. Free to reach. Past that, the Scrap Fields, Old Battlefield, Downtown — each one further out, each one harder.'\n\nHe taps the chart. 'Travelling costs fuel. The further the zone, the more it burns. And every zone has an open world — the general area where you'll fight whatever's out there — plus specific destinations. Shops, refiners, forges, people worth talking to.'\n\n'You find destinations by buying maps from the Mapmaker. He shows up in most zones. Once you've got a location mapped, you can travel straight to it instead of wandering.' He folds the chart. 'Push as far as you can handle. But don't skip zones — the resources in each one feed into the next.'"
+            },
+            {
+                question: "How do I level up?",
+                response: "'Silicon.' He holds up a dull grey chip. 'You earn silicon from fights. It fills your silicon gauge — the bar under your name. When the bar is full, you can spend it to level up.'\n\nHe points to your stat panel. 'When you level, you pick which stat to upgrade — ATK, DEF, speed, breaker, mining, or regen. That stat goes up by one. And your max HP goes up by one automatically, every level, no matter what you pick.'\n\nHe sets the chip down. 'The cost goes up each time. Early levels are cheap. Later on you'll need a lot more silicon per level. That's why mining matters — more minerals means more gear from the forge, and fights in harder zones pay more silicon.' He looks at you. 'There's no shortcut. You grind, you grow, you survive.'"
             }
         ]
     },
