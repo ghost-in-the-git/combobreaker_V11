@@ -72,7 +72,7 @@ const ENCOUNTERS_HOME = [
     },
     {
         name: "Spark",
-        characterImage: "images/spark.gif",
+        characterImage: "images/spark.png",
         type: "shop",
         discoverable: true,
         autoEngage: true,
