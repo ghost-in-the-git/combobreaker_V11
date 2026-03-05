@@ -6399,6 +6399,29 @@
             const isAoe = mod && mod.targeting === 'aoe';
             const hasAttack = mod && mod.atkMult > 0;
 
+            // --- Start-of-round HP regen (repair mods) ---
+            // Only REGEN mods (Quick Repair, Deep Restore) trigger in-combat healing.
+            // Formula: regenBase + (regen stat × regenMult) — base ensures early-game viability.
+            let regenHealed = 0;
+            const hpBeforeRegen = p.hp;
+            if ((regenMult > 0 || regenBase > 0) && p.hp < p.maxHp) {
+                const regenTotal = regenBase + (p.regen * regenMult);
+                regenHealed = Math.min(regenTotal, p.maxHp - p.hp);
+                p.hp += regenHealed;
+                updateStats();
+
+                // Mech repair response
+                if (regenHealed > 0 && mod && mod.repairLines && mod.repairLines.length > 0) {
+                    const line = mod.repairLines[Math.floor(Math.random() * mod.repairLines.length)];
+                    await addMessage(`<b>MECH:</b> "${line}"`, 'player', { html: true });
+                }
+
+                // Regen narration
+                if (regenHealed > 0) {
+                    await addMessage(`<b>MECH</b> regenerates <b>${regenHealed} HP</b>`, 'player', { html: true, hpBar: { current: p.hp, max: p.maxHp, from: hpBeforeRegen } });
+                }
+            }
+
             if (hasAttack) {
                 if (speedTriggered) {
                     await addMessage(`[<b>SPEEDBREAKER</b> TRIGGERED]`, 'player', { html: true });
@@ -6643,24 +6666,6 @@
                 }
             }
 
-            // --- End-of-round HP regen ---
-            // Only REGEN mods (Quick Repair, Deep Restore) trigger in-combat healing.
-            // Formula: regenBase + (regen stat × regenMult) — base ensures early-game viability.
-            let regenHealed = 0;
-            const hpBeforeRegen = p.hp;
-            if ((regenMult > 0 || regenBase > 0) && p.hp < p.maxHp) {
-                const regenTotal = regenBase + (p.regen * regenMult);
-                regenHealed = Math.min(regenTotal, p.maxHp - p.hp);
-                p.hp += regenHealed;
-                updateStats();
-
-                // Mech repair response
-                if (regenHealed > 0 && mod && mod.repairLines && mod.repairLines.length > 0) {
-                    const line = mod.repairLines[Math.floor(Math.random() * mod.repairLines.length)];
-                    await addMessage(`<b>MECH:</b> "${line}"`, 'player', { html: true });
-                }
-            }
-
             // Painbreaker: chance to regain HP equal to regen stat
             if (hasBreaker("Frost's Painbreaker Key") && p.regen > 0 && p.hp < p.maxHp && Math.random() * 100 < getBreaker()) {
                 const prevHp = p.hp;
@@ -6681,11 +6686,7 @@
                     wave.enemyDef[i] = et.defence;
                 }
             }
-            if (regenHealed > 0 && p.defence > 0) {
-                await addMessage(`<b>MECH</b> regenerates <b>${regenHealed} HP</b> and restores <b>DEF to ${remainingDefence}</b>`, 'player', { html: true, hpBar: { current: p.hp, max: p.maxHp, from: hpBeforeRegen }, defBar: { current: remainingDefence, max: p.defence, from: defBeforeRestore } });
-            } else if (regenHealed > 0) {
-                await addMessage(`<b>MECH</b> regenerates <b>${regenHealed} HP</b>`, 'player', { html: true, hpBar: { current: p.hp, max: p.maxHp, from: hpBeforeRegen } });
-            } else if (p.defence > 0) {
+            if (p.defence > 0) {
                 await addMessage(`<b>DEF</b> restored to <b>${remainingDefence}</b>.`, 'player', { html: true, hpBar: { current: p.hp, max: p.maxHp }, defBar: { current: remainingDefence, max: p.defence, from: defBeforeRestore } });
             }
 
