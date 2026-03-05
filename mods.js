@@ -133,13 +133,6 @@ const MOD_BASES = [
             "Shields up. Reactor to repairs.",
             "Standing down to recharge."
         ],
-        repairLines: [
-            "Patch job holding. Hull integrity climbing.",
-            "Nanites sealing the breach. Hold still.",
-            "Reactor cycling. Damage repaired.",
-            "Systems knitting. Back in the fight.",
-            "Quick fix. Not pretty, but it'll hold."
-        ],
         cost: 80
     },
     {
@@ -246,13 +239,6 @@ const MOD_BASES = [
             "Nanite surge. Give it time.",
             "Shutting down non-essentials. Full repair mode."
         ],
-        repairLines: [
-            "Full rebuild cycling. Hull integrity surging.",
-            "Deep tissue repair. The frame is remembering what it was.",
-            "Nanite flood. Every crack filling at once.",
-            "Core reconstruction online. Give it a moment.",
-            "Systems coming back green across the board."
-        ],
         cost: 250
     }
 ];
@@ -344,7 +330,6 @@ for (let b = 0; b < MOD_BASES.length; b++) {
             regenBase: base.regenBase || 0,
             cssClass: element ? (base.cssClass + ' element-' + element) : base.cssClass,
             flavour: base.flavour,
-            repairLines: base.repairLines || null,
             cost: element ? base.cost * 2 : base.cost
         });
     }

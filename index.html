@@ -6410,18 +6410,9 @@
                 p.hp += regenHealed;
                 updateStats();
 
-                // Mech repair response + narration combined
                 if (regenHealed > 0) {
                     const modLabel = mod ? ` using <b>${mod.name.toUpperCase()}</b>` : '';
-                    let repairLine = '';
-                    if (mod && mod.repairLines && mod.repairLines.length > 0) {
-                        const line = mod.repairLines[Math.floor(Math.random() * mod.repairLines.length)];
-                        repairLine = ` "${line}"`;
-                    }
                     await addMessage(`<b>MECH</b> regenerates <b>${regenHealed} HP</b>${modLabel}`, 'player', { html: true, hpBar: { current: p.hp, max: p.maxHp, from: hpBeforeRegen } });
-                    if (repairLine) {
-                        await addMessage(`<b>MECH:</b>${repairLine}`, 'player', { html: true });
-                    }
                 }
             }
 
