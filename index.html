@@ -6395,6 +6395,7 @@
 
             // Mod-driven action flags
             const regenMult = mod ? (mod.regenMult || 0) : 0;
+            const regenBase = mod ? (mod.regenBase || 0) : 0;
             const isAoe = mod && mod.targeting === 'aoe';
             const hasAttack = mod && mod.atkMult > 0;
 
@@ -6644,12 +6645,20 @@
 
             // --- End-of-round HP regen ---
             // Only REGEN mods (Quick Repair, Deep Restore) trigger in-combat healing.
+            // Formula: regenBase + (regen stat × regenMult) — base ensures early-game viability.
             let regenHealed = 0;
             const hpBeforeRegen = p.hp;
-            if (regenMult > 0 && p.regen > 0 && p.hp < p.maxHp) {
-                regenHealed = Math.min(p.regen * regenMult, p.maxHp - p.hp);
+            if ((regenMult > 0 || regenBase > 0) && p.hp < p.maxHp) {
+                const regenTotal = regenBase + (p.regen * regenMult);
+                regenHealed = Math.min(regenTotal, p.maxHp - p.hp);
                 p.hp += regenHealed;
                 updateStats();
+
+                // Mech repair response
+                if (regenHealed > 0 && mod && mod.repairLines && mod.repairLines.length > 0) {
+                    const line = mod.repairLines[Math.floor(Math.random() * mod.repairLines.length)];
+                    await addMessage(`<b>MECH:</b> "${line}"`, 'player', { html: true });
+                }
             }
 
             // Painbreaker: chance to regain HP equal to regen stat
