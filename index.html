@@ -2093,22 +2093,6 @@
     <script src="enemies_ironveil.js"></script>
     <script src="enemies_signalpoint.js"></script>
     <script src="enemies_ratpile.js"></script>
-    <script src="ambush_ratpile.js"></script>
-    <script src="ambush_scrapyard.js"></script>
-    <script src="ambush_oldbattlefield.js"></script>
-    <script src="ambush_downtown.js"></script>
-    <script src="ambush_orbitalstation.js"></script>
-    <script src="ambush_wasteland.js"></script>
-    <script src="ambush_undercity.js"></script>
-    <script src="ambush_industrialzone.js"></script>
-    <script src="ambush_frozenreach.js"></script>
-    <script src="ambush_neonstrip.js"></script>
-    <script src="ambush_deadzone.js"></script>
-    <script src="ambush_frontline.js"></script>
-    <script src="ambush_trenchworks.js"></script>
-    <script src="ambush_firebaseharrow.js"></script>
-    <script src="ambush_ironveil.js"></script>
-    <script src="ambush_signalpoint.js"></script>
     <script src="boss_encounters.js"></script>
     <script src="items.js"></script>
     <script src="pilots.js"></script>
@@ -2206,7 +2190,6 @@
             activeSlot: null, // Which save slot is currently active (1-3 or null)
             minerals: {}, // Collected minerals by category
             storyItems: ['Mysterious Note', 'Unknown Sealed Key', 'Unreadable DNA Tag', 'Destroyed Mech Heart'], // Collected story items
-            isAmbush: false, // Whether current wave is an ambush
             isBossEncounter: false, // Whether current wave is a boss encounter
             justDied: false, // Set after death, cleared after next encounter engage
             missions: {} // Broker mission progress: { missionKey: { kills: N, completed: bool } }
@@ -2219,7 +2202,7 @@
         let currentBossEncounter = null; // Active boss encounter data
 
         const MINING_CHANCE = 15; // % chance for mining event instead of enemy wave
-        const AMBUSH_CHANCE = 0; // % chance for ambush instead of normal enemy wave
+
         const BOSS_CHANCE = 50; // % chance for boss encounter instead of normal enemy wave
 
         const SAVE_KEY = 'combobreaker_save';
@@ -2343,7 +2326,6 @@
             // Stop all active timers and battle state
             game.inBattle = false;
             game.currentWave = null;
-            game.isAmbush = false;
             game.isBossEncounter = false;
             currentBossEncounter = null;
             currentEncounter = null;
@@ -2419,7 +2401,6 @@
             // Stop all active timers and battle state
             game.inBattle = false;
             game.currentWave = null;
-            game.isAmbush = false;
             game.isBossEncounter = false;
             currentBossEncounter = null;
             currentEncounter = null;
@@ -2741,7 +2722,6 @@
                 enemies: ENEMIES_RATPILE,
                 encounters: ENCOUNTERS_RATPILE,
                 mining: null,
-                ambush: AMBUSH_RATPILE,
                 fuelCost: 0,
                 desc: "A festering nest of silicon rats beneath the scrapyard. Weak vermin, but they never stop coming.",
                 image: "images/RATPILE.gif"
@@ -2750,7 +2730,6 @@
                 enemies: ENEMIES_SCRAPYARD,
                 encounters: ENCOUNTERS_SCRAPYARD,
                 mining: MINING_SCRAPYARD,
-                ambush: AMBUSH_SCRAPYARD,
                 fuelCost: 5,
                 desc: "Piles of rusted mechs and salvageable parts. Low-threat scavenger bots roam the wreckage.",
                 image: "images/SCRAPFIELDS.gif"
@@ -2759,7 +2738,6 @@
                 enemies: ENEMIES_OLDBATTLEFIELD,
                 encounters: ENCOUNTERS_OLDBATTLEFIELD,
                 mining: MINING_OLDBATTLEFIELD,
-                ambush: AMBUSH_OLDBATTLEFIELD,
                 fuelCost: 10,
                 desc: "Scarred terrain littered with war machines still running combat protocols from a forgotten conflict.",
                 image: "images/IMAGE.gif"
@@ -2768,7 +2746,6 @@
                 enemies: ENEMIES_DOWNTOWN,
                 encounters: ENCOUNTERS_DOWNTOWN,
                 mining: MINING_DOWNTOWN,
-                ambush: AMBUSH_DOWNTOWN,
                 fuelCost: 15,
                 desc: "Neon-lit urban sprawl. Corporate security and street-modded combat rigs patrol the blocks.",
                 image: "images/IMAGE.gif"
@@ -2777,7 +2754,6 @@
                 enemies: ENEMIES_ORBITALSTATION,
                 encounters: ENCOUNTERS_ORBITALSTATION,
                 mining: MINING_ORBITALSTATION,
-                ambush: AMBUSH_ORBITALSTATION,
                 fuelCost: 20,
                 desc: "A derelict orbital platform. Rogue drones and hijacked defense systems stalk the corridors.",
                 image: "images/IMAGE.gif"
@@ -2786,7 +2762,6 @@
                 enemies: ENEMIES_WASTELAND,
                 encounters: ENCOUNTERS_WASTELAND,
                 mining: MINING_WASTELAND,
-                ambush: AMBUSH_WASTELAND,
                 fuelCost: 25,
                 desc: "Irradiated badlands where feral war machines and dust-choked scavengers fight over scraps.",
                 image: "images/IMAGE.gif"
@@ -2795,7 +2770,6 @@
                 enemies: ENEMIES_UNDERCITY,
                 encounters: ENCOUNTERS_UNDERCITY,
                 mining: MINING_UNDERCITY,
-                ambush: AMBUSH_UNDERCITY,
                 fuelCost: 30,
                 desc: "A labyrinth of tunnels and sewers beneath the streets. Black-ops units and tunnel rats lurk in the dark.",
                 image: "images/IMAGE.gif"
@@ -2804,7 +2778,6 @@
                 enemies: ENEMIES_INDUSTRIALZONE,
                 encounters: ENCOUNTERS_INDUSTRIALZONE,
                 mining: MINING_INDUSTRIALZONE,
-                ambush: AMBUSH_INDUSTRIALZONE,
                 fuelCost: 35,
                 desc: "Sprawling factories and refineries. Malfunctioning production bots guard the assembly lines.",
                 image: "images/IMAGE.gif"
@@ -2813,7 +2786,6 @@
                 enemies: ENEMIES_FROZENREACH,
                 encounters: ENCOUNTERS_FROZENREACH,
                 mining: MINING_FROZENREACH,
-                ambush: AMBUSH_FROZENREACH,
                 fuelCost: 40,
                 desc: "Arctic tundra locked in permanent winter. Cryo-adapted war machines patrol the frozen expanse.",
                 image: "images/IMAGE.gif"
@@ -2822,7 +2794,6 @@
                 enemies: ENEMIES_NEONSTRIP,
                 encounters: ENCOUNTERS_NEONSTRIP,
                 mining: MINING_NEONSTRIP,
-                ambush: AMBUSH_NEONSTRIP,
                 fuelCost: 45,
                 desc: "The flashy entertainment district. Syndicate enforcers and casino muscle keep the peace their way.",
                 image: "images/IMAGE.gif"
@@ -2831,7 +2802,6 @@
                 enemies: ENEMIES_DEADZONE,
                 encounters: ENCOUNTERS_DEADZONE,
                 mining: MINING_DEADZONE,
-                ambush: AMBUSH_DEADZONE,
                 fuelCost: 50,
                 desc: "Heavily contaminated killing fields. Corrupted AI and mutated war platforms roam unchecked.",
                 image: "images/IMAGE.gif"
@@ -2840,7 +2810,6 @@
                 enemies: null,
                 encounters: null,
                 mining: MINING_ASTEROIDBELT,
-                ambush: null,
                 fuelCost: 30,
                 desc: "A dense field of mineral-rich asteroids. No hostiles, no traders — just rock, ore, and the void.",
                 image: "images/IMAGE.gif"
@@ -2849,7 +2818,6 @@
                 enemies: ENEMIES_FRONTLINE,
                 encounters: ENCOUNTERS_FRONTLINE,
                 mining: null,
-                ambush: AMBUSH_FRONTLINE,
                 fuelCost: 55,
                 desc: "Active military staging ground. Squadrons of piloted combobreakers hold the line. They killed you once.",
                 image: "images/IMAGE.gif"
@@ -2858,7 +2826,6 @@
                 enemies: ENEMIES_TRENCHWORKS,
                 encounters: null,
                 mining: null,
-                ambush: AMBUSH_TRENCHWORKS,
                 fuelCost: 60,
                 desc: "A network of reinforced trenches dug into the kill corridor floor. Decades of autonomous fortification — layered armour, turret nests, overlapping fields of fire. Morningstar's maps say this sector was cleared eighty years ago. The Reaper's targeting overlay says otherwise.",
                 image: "images/IMAGE.gif"
@@ -2867,7 +2834,6 @@
                 enemies: ENEMIES_FIREBASEHARROW,
                 encounters: null,
                 mining: null,
-                ambush: AMBUSH_FIREBASEHARROW,
                 fuelCost: 65,
                 desc: "A firebase built into the husk of a downed capital ship. Artillery platforms cycle through firing solutions, shelling positions that Morningstar's maps mark as friendly. Three patrols walked into the barrage before the Reaper stopped sending them.",
                 image: "images/IMAGE.gif"
@@ -2876,7 +2842,6 @@
                 enemies: ENEMIES_IRONVEIL,
                 encounters: null,
                 mining: null,
-                ambush: AMBUSH_IRONVEIL,
                 fuelCost: 70,
                 desc: "A wall of wreckage three storeys high — mechs, vehicles, scaffolding — welded into a barricade that stretches across the corridor. Behind it, a staging ground where enemies mass and regroup. Morningstar said go around. The Reaper says go through.",
                 image: "images/IMAGE.gif"
@@ -2885,7 +2850,6 @@
                 enemies: ENEMIES_SIGNALPOINT,
                 encounters: null,
                 mining: null,
-                ambush: AMBUSH_SIGNALPOINT,
                 fuelCost: 75,
                 desc: "A relay tower at the far end of the kill corridor. Every hostile formation, target priority, and reinforcement schedule on the frontline flows through this single point. Morningstar's standing order: monitor, do not engage. The Reaper's contract says destroy it.",
                 image: "images/IMAGE.gif"
@@ -2894,7 +2858,6 @@
                 enemies: null,
                 encounters: null,
                 mining: null,
-                ambush: null,
                 fuelCost: 100,
                 desc: "Past the frontline. Past the war. Morningstar is here — a monolithic war machine that hasn't stopped advancing in eighty years. The squad is with you. All of them. Finish it.",
                 image: "images/IMAGE.gif"
@@ -2903,7 +2866,6 @@
                 enemies: null,
                 encounters: ENCOUNTERS_FORGE,
                 mining: null,
-                ambush: null,
                 fuelCost: 10,
                 desc: "A hidden workshop built into an old munitions bunker. The air shimmers with heat from the forge.",
                 image: "images/IMAGE.gif"
@@ -2912,7 +2874,6 @@
                 enemies: null,
                 encounters: ENCOUNTERS_GUILD,
                 mining: null,
-                ambush: null,
                 fuelCost: 10,
                 desc: "A smoke-filled hall deep in the Undercity tunnels. Pilot dossiers cover every wall. Mercenaries for hire — no loyalty, no questions.",
                 image: "images/GUILD_LOCATION.gif"
@@ -2921,7 +2882,6 @@
                 enemies: null,
                 encounters: ENCOUNTERS_SALVAGEYARD,
                 mining: null,
-                ambush: null,
                 fuelCost: 10,
                 desc: "A mech chop-shop carved into an old freight depot. Hydraulic presses hiss and sparks fly from cutting torches.",
                 image: "images/IMAGE.gif"
@@ -2930,7 +2890,6 @@
                 enemies: null,
                 encounters: ENCOUNTERS_DECRYPTER,
                 mining: null,
-                ambush: null,
                 fuelCost: 10,
                 desc: "A sealed bunker humming with power. Banks of cipher machines line the walls. Someone is cracking codes.",
                 image: "images/IMAGE.gif"
@@ -2939,7 +2898,6 @@
                 enemies: null,
                 encounters: ENCOUNTERS_MODSHOP,
                 mining: null,
-                ambush: null,
                 fuelCost: 5,
                 desc: "A cluttered workshop buried under cables and circuit boards. Mod casings line every wall.",
                 image: "images/IMAGE.gif"
@@ -2948,7 +2906,6 @@
                 enemies: null,
                 encounters: ENCOUNTERS_HOME,
                 mining: null,
-                ambush: null,
                 fuelCost: 0,
                 desc: "Your workshop. The Professor is here, tinkering with salvage and offering what they've found.",
                 image: "images/HOME.gif"
@@ -3429,7 +3386,6 @@
             // Stop all active timers and battle state
             game.inBattle = false;
             game.currentWave = null;
-            game.isAmbush = false;
             game.isBossEncounter = false;
             currentBossEncounter = null;
             currentEncounter = null;
@@ -3495,7 +3451,6 @@
             // Stop all active timers and battle state
             game.inBattle = false;
             game.currentWave = null;
-            game.isAmbush = false;
             game.isBossEncounter = false;
             currentBossEncounter = null;
             currentEncounter = null;
@@ -5737,125 +5692,6 @@
             hideInlineButtons();
         }
 
-        // Spawn new wave
-        // Select ambush enemy type based on player level and appearance rates
-        function selectAmbushType() {
-            const loc = LOCATIONS[currentLocation];
-            if (!loc.ambush || loc.ambush.length === 0) return null;
-            const playerLevel = game.player.level;
-            const available = loc.ambush.filter(e => e.minLevel <= playerLevel);
-            if (available.length === 0) return null;
-            const totalRate = available.reduce((sum, e) => sum + e.appearanceRate, 0);
-            let roll = Math.random() * totalRate;
-            for (const enemy of available) {
-                roll -= enemy.appearanceRate;
-                if (roll <= 0) return enemy;
-            }
-            return available[0];
-        }
-
-        // Spawn an ambush event
-        function spawnAmbush() {
-            const ambushEnemy = selectAmbushType();
-            if (!ambushEnemy) return false;
-
-            const min = ambushEnemy.squadMin || 1;
-            const max = ambushEnemy.squadMax || 1;
-            const enemyCount = Math.floor(Math.random() * (max - min + 1)) + min;
-
-            game.currentWave = {
-                enemyType: ambushEnemy,
-                count: enemyCount,
-                remaining: enemyCount,
-                currentTarget: 1,
-                enemyHp: Array(enemyCount).fill(ambushEnemy.hp),
-                enemyDef: Array(enemyCount).fill(ambushEnemy.defence),
-                turn: 0
-            };
-            game.isAmbush = true;
-
-            addMessage(`[AMBUSH] A squad of ${enemyCount} ${ambushEnemy.name}s has locked onto your location [ATK: ${ambushEnemy.attack} DEF: ${ambushEnemy.defence} HP: ${ambushEnemy.hp}]`, 'enemy');
-
-            // Create countdown message
-            let secondsLeft = Math.floor(game.WAVE_EXPIRE / 1000);
-            const countdownMsg = document.createElement('div');
-            countdownMsg.className = 'message system';
-            countdownMsg.textContent = `Contact in [${secondsLeft}] seconds.`;
-            chatMessages.appendChild(countdownMsg);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-            game.countdownMsg = countdownMsg;
-
-            addMessage(`Hostile signatures closing fast...`, 'player');
-
-            // Update countdown every second
-            game.countdownInterval = setInterval(() => {
-                secondsLeft--;
-                if (secondsLeft > 0) {
-                    countdownMsg.textContent = `Contact in [${secondsLeft}] seconds.`;
-                    updateEvadeButton();
-                } else {
-                    clearCountdown();
-                }
-            }, 1000);
-
-            // Set button text for ambush
-            btnRetreat.textContent = 'Evade';
-            showInlineButtons();
-
-            // Ambush expires - if player doesn't act, fight starts automatically
-            if (game.waveExpireTimer) clearTimeout(game.waveExpireTimer);
-            game.waveExpireTimer = setTimeout(() => {
-                clearCountdown();
-                if (game.currentWave && !game.inBattle) {
-                    addMessage(`[CONTACT] No time left — they're on you!`, 'enemy');
-                    hideInlineButtons();
-                    btnRetreat.textContent = 'Evade';
-                    engageBattle();
-                }
-            }, game.WAVE_EXPIRE);
-
-            return true;
-        }
-
-        // Evade an ambush using breaker stat (requires Speedbreaker key)
-        function evadeAmbush() {
-            if (!game.currentWave || game.inBattle) return;
-            if (game.player.fuel < EVADE_FUEL_COST) {
-                addMessage(`[NOT ENOUGH FUEL] Need ${EVADE_FUEL_COST} fuel to evade. You have ${game.player.fuel}.`, 'system');
-                return;
-            }
-
-            game.player.fuel -= EVADE_FUEL_COST;
-            updateStats();
-
-            // Clear expire timer and countdown
-            if (game.waveExpireTimer) {
-                clearTimeout(game.waveExpireTimer);
-                game.waveExpireTimer = null;
-            }
-            clearCountdown();
-
-            const p = game.player;
-            const hasSpeed = hasBreaker("Wire's Speedbreaker Key");
-            const evadeRoll = hasSpeed && Math.random() * 100 < getBreaker();
-
-            if (evadeRoll) {
-                addMessage(`[EVADE SUCCESSFUL] Speedbreaker engaged — you slipped their sensors!`, 'player');
-                removeBossDialogue();
-                game.currentWave = null;
-                game.isAmbush = false;
-                game.isBossEncounter = false;
-                currentBossEncounter = null;
-                btnRetreat.textContent = 'Evade';
-                startWaveTimer();
-            } else {
-                addMessage(`[EVADE FAILED] They've cut off your escape — combat is unavoidable!`, 'enemy');
-                removeBossDialogue();
-                btnRetreat.textContent = 'Evade';
-                engageBattle();
-            }
-        }
-
         // Evade a boss encounter — always succeeds (100% evasion)
         function evadeBoss() {
             if (!game.currentWave || game.inBattle) return;
@@ -5876,7 +5712,6 @@
             addMessage(`[EVADE SUCCESSFUL] Speedbreaker engaged — you slipped their sensors!`, 'player');
             removeBossDialogue();
             game.currentWave = null;
-            game.isAmbush = false;
             game.isBossEncounter = false;
             currentBossEncounter = null;
             btnRetreat.textContent = 'Evade';
@@ -6156,10 +5991,6 @@
                 if (spawnEncounter()) return;
             }
 
-            // Check for ambush chance
-            if (loc.ambush && Math.random() * 100 < AMBUSH_CHANCE) {
-                if (spawnAmbush()) return;
-            }
 
             // Check for mining event chance (only if player has mining stat > 0)
             if (game.player.mining > 0 && Math.random() * 100 < MINING_CHANCE) {
@@ -6850,7 +6681,6 @@
             }
 
             game.currentWave = null;
-            game.isAmbush = false;
             game.isBossEncounter = false;
             currentBossEncounter = null;
             btnRetreat.textContent = 'Evade';
@@ -6994,8 +6824,6 @@
                 declineEncounter();
             } else if (game.isBossEncounter && !game.inBattle) {
                 evadeBoss(); // Boss evasion always succeeds
-            } else if (game.isAmbush) {
-                evadeAmbush();
             } else {
                 declineBattle();
             }
