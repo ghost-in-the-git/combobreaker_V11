@@ -493,33 +493,9 @@
         }
 
         /* Abbreviate Stats Toggle */
-        .abbrev-toggle {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 4px;
-        }
-
-        .abbrev-toggle button {
-            font-family: 'Courier New', monospace;
-            font-size: 10px;
-            background: #1a1a2e;
-            color: #888;
-            border: 1px solid #00ff8833;
-            border-radius: 4px;
-            padding: 2px 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .abbrev-toggle button:hover {
-            color: #00ff88;
-            border-color: #00ff8888;
-        }
-
-        .abbrev-toggle button.active {
-            color: #00ff88;
-            border-color: #00ff88;
+        .options-btn.active {
             background: #00ff8822;
+            border-color: #00ff88;
         }
 
         /* Equipment Panel */
@@ -1693,7 +1669,10 @@
     <div class="stats-panel">
         <div style="display: flex; justify-content: space-between; align-items: center;">
             <h3>COMBOBREAKER</h3>
-            <button class="options-btn" id="btn-options">LOAD</button>
+            <div style="display: flex; gap: 4px;">
+                <button class="options-btn" id="btn-abbrev-stats" title="Show stats only">STATS</button>
+                <button class="options-btn" id="btn-options">LOAD</button>
+            </div>
         </div>
         <h4>/// v2.0.0</h4>
 
@@ -1767,9 +1746,6 @@
         </div>
 
         <div class="panel-page" id="page-installations">
-            <div class="abbrev-toggle">
-                <button id="btn-abbrev-stats" title="Show stats only">[STATS]</button>
-            </div>
             <div class="equipment-panel">
                 <div class="equip-slot">
                     <select id="equip-body"><option value="">-- None --</option></select>
@@ -1799,9 +1775,6 @@
         </div>
 
         <div class="panel-page" id="page-pilot">
-            <div class="abbrev-toggle">
-                <button class="btn-abbrev-stats-mirror" title="Show stats only">[STATS]</button>
-            </div>
             <div class="equipment-panel">
                 <div class="mod-slots">
                     <div class="equip-slot">
@@ -3756,14 +3729,11 @@
 
         // Abbreviate stats toggle
         let abbreviateStats = false;
-        function toggleAbbrevStats() {
+        document.getElementById('btn-abbrev-stats').addEventListener('click', () => {
             abbreviateStats = !abbreviateStats;
             document.getElementById('btn-abbrev-stats').classList.toggle('active', abbreviateStats);
-            document.querySelectorAll('.btn-abbrev-stats-mirror').forEach(b => b.classList.toggle('active', abbreviateStats));
             updateEquipmentUI();
-        }
-        document.getElementById('btn-abbrev-stats').addEventListener('click', toggleAbbrevStats);
-        document.querySelectorAll('.btn-abbrev-stats-mirror').forEach(b => b.addEventListener('click', toggleAbbrevStats));
+        });
 
         function getDisplayName(tag, itemName) {
             if (!abbreviateStats) return `[${tag}] ${itemName}`;
