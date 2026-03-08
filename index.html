@@ -694,6 +694,18 @@
             box-shadow: 0 0 20px #ffcc0055;
         }
 
+        .action-btn.flee {
+            background: #2a1a1a;
+            border-color: #ff6600;
+            color: #ff6600;
+        }
+
+        .action-btn.flee:hover:not(:disabled) {
+            background: #ff6600;
+            color: #0a0a0f;
+            box-shadow: 0 0 20px #ff660055;
+        }
+
         .combat-action-timer {
             text-align: center;
             color: #666;
@@ -6165,6 +6177,21 @@
                     }
                     container.appendChild(btn);
                 });
+
+                // Flee button — always available as 5th option, costs 50 fuel
+                const fleeBtn = document.createElement('button');
+                fleeBtn.className = 'action-btn flee';
+                fleeBtn.textContent = 'FLEE -50';
+                fleeBtn.disabled = 50 > p.fuel;
+                fleeBtn.addEventListener('click', () => {
+                    clearTimeout(timer);
+                    clearInterval(countdown);
+                    wrapper.remove();
+                    timerEl.remove();
+                    resolve({ id: 'flee', name: 'Flee', fuel: 50, atkMult: 0, defMult: 0, targeting: 'none', regenMult: 0, regenBase: 0, flee: true });
+                });
+                container.appendChild(fleeBtn);
+
                 wrapper.appendChild(container);
 
                 // Countdown timer — auto-selects first equipped mod (or null)
@@ -6249,6 +6276,12 @@
                     updateStats();
                 }
 
+                // Flee — burn fuel and bail out
+                if (mod.flee) {
+                    await addMessage("Systems overloaded — emergency retreat!", 'player');
+                    endBattle(false);
+                    return;
+                }
             }
 
             // Determine breaker procs this turn (gated behind owning decrypted keys)
