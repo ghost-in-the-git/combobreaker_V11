@@ -492,6 +492,36 @@
             pointer-events: none;
         }
 
+        /* Abbreviate Stats Toggle */
+        .abbrev-toggle {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 4px;
+        }
+
+        .abbrev-toggle button {
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+            background: #1a1a2e;
+            color: #888;
+            border: 1px solid #00ff8833;
+            border-radius: 4px;
+            padding: 2px 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .abbrev-toggle button:hover {
+            color: #00ff88;
+            border-color: #00ff8888;
+        }
+
+        .abbrev-toggle button.active {
+            color: #00ff88;
+            border-color: #00ff88;
+            background: #00ff8822;
+        }
+
         /* Equipment Panel */
         .equipment-panel {
             margin-top: 10px;
@@ -1737,6 +1767,9 @@
         </div>
 
         <div class="panel-page" id="page-installations">
+            <div class="abbrev-toggle">
+                <button id="btn-abbrev-stats" title="Show stats only">[STATS]</button>
+            </div>
             <div class="equipment-panel">
                 <div class="equip-slot">
                     <select id="equip-body"><option value="">-- None --</option></select>
@@ -1766,6 +1799,9 @@
         </div>
 
         <div class="panel-page" id="page-pilot">
+            <div class="abbrev-toggle">
+                <button class="btn-abbrev-stats-mirror" title="Show stats only">[STATS]</button>
+            </div>
             <div class="equipment-panel">
                 <div class="mod-slots">
                     <div class="equip-slot">
@@ -3718,6 +3754,25 @@
             return 0;
         }
 
+        // Abbreviate stats toggle
+        let abbreviateStats = false;
+        function toggleAbbrevStats() {
+            abbreviateStats = !abbreviateStats;
+            document.getElementById('btn-abbrev-stats').classList.toggle('active', abbreviateStats);
+            document.querySelectorAll('.btn-abbrev-stats-mirror').forEach(b => b.classList.toggle('active', abbreviateStats));
+            updateEquipmentUI();
+        }
+        document.getElementById('btn-abbrev-stats').addEventListener('click', toggleAbbrevStats);
+        document.querySelectorAll('.btn-abbrev-stats-mirror').forEach(b => b.addEventListener('click', toggleAbbrevStats));
+
+        function getDisplayName(tag, itemName) {
+            if (!abbreviateStats) return `[${tag}] ${itemName}`;
+            // Extract all bracketed stat portions like [+5 HP] [+1 ATK]
+            const stats = itemName.match(/\[[^\]]*[+-][^\]]*\]/g);
+            if (stats) return `[${tag}] ${stats.join(' ')}`;
+            return `[${tag}] ${itemName}`;
+        }
+
         // Update equipment dropdowns with inventory items
         const SLOT_LABELS = {
             body: 'BODY', legs: 'LEGS', arms: 'ARMS', weapon: 'WEAPON',
@@ -3750,7 +3805,7 @@
                 slotItems.forEach(item => {
                     const option = document.createElement('option');
                     option.value = item.name;
-                    option.textContent = `[${tag}] ${item.name}`;
+                    option.textContent = getDisplayName(tag, item.name);
                     if (item.name === currentValue) {
                         option.selected = true;
                     }
