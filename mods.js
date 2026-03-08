@@ -22,7 +22,7 @@
  * - flavour:   Array of random flavour messages
  * - cost:      Purchase price in Silicon
  *
- * GENERATION: 10 base mods × 9 variants (neutral + 8 elements) = 90 mods
+ * GENERATION: 10 base mods × 8 variants (neutral + 7 elements) = 80 mods
  * Naming: "Swift Strike" → "Swift Fire Strike", "Swift Cryo Strike", etc.
  */
 
@@ -275,16 +275,15 @@ function getDefenceTypeBonus(attackElement, defenceType) {
 
 // ========== MOD GENERATION ==========
 
-const ELEMENT_VARIANTS = [null, 'steel', 'flesh', 'fire', 'cryo', 'acid', 'volt', 'light', 'void'];
+const ELEMENT_VARIANTS = [null, 'steel', 'fire', 'cryo', 'acid', 'volt', 'light', 'void'];
 
 const ELEMENT_LABELS = {
-    steel: 'Steel', flesh: 'Flesh', fire: 'Fire', cryo: 'Cryo',
+    steel: 'Steel', fire: 'Fire', cryo: 'Cryo',
     acid: 'Acid', volt: 'Volt', light: 'Light', void: 'Void'
 };
 
 const ELEMENT_DESC_PREFIX = {
     steel: 'Steel-forged.',
-    flesh: 'Bio-grafted.',
     fire: 'Flame-infused.',
     cryo: 'Cryo-locked.',
     acid: 'Acid-laced.',
@@ -308,7 +307,7 @@ function generateModId(baseId, element) {
     return element ? baseId + '_' + element : baseId;
 }
 
-// Generate all 90 mods (10 bases × 9 variants)
+// Generate all 80 mods (10 bases × 8 variants)
 const MODS = [];
 for (let b = 0; b < MOD_BASES.length; b++) {
     const base = MOD_BASES[b];
