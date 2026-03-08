@@ -6269,14 +6269,20 @@
                 if (rawAttack < 1) rawAttack = 1;
 
                 // Element bonus vs enemy element
+                let elemMsg = '';
                 if (mod.element && et.element) {
                     const elemBonus = getElementBonus(mod.element, et.element);
                     rawAttack = Math.floor(rawAttack * elemBonus);
+                    if (elemBonus > 1) elemMsg = 'element advantage';
+                    else if (elemBonus < 1) elemMsg = 'element disadvantage';
                 }
                 // Element bonus vs enemy defence type
                 if (mod.element && et.defenceType) {
                     const defTypeBonus = getDefenceTypeBonus(mod.element, et.defenceType);
                     rawAttack = Math.floor(rawAttack * defTypeBonus);
+                }
+                if (elemMsg) {
+                    await addMessage(`[${mod.element.toUpperCase()} vs ${et.element.toUpperCase()}] ${elemMsg}`, 'system');
                 }
 
                 if (breakerTriggered) {
