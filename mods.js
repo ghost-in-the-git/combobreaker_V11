@@ -22,7 +22,7 @@
  * - flavour:   Array of random flavour messages
  * - cost:      Purchase price in Silicon
  *
- * GENERATION: 6 attack bases × 8 variants + 4 defence/utility bases (neutral only) = 52 mods
+ * GENERATION: 6 attack bases × 7 elements + 4 defence/utility bases (steel only) = 46 mods
  * Naming: "Swift Strike" → "Swift Fire Strike", "Swift Cryo Strike", etc.
  */
 
@@ -275,7 +275,7 @@ function getDefenceTypeBonus(attackElement, defenceType) {
 
 // ========== MOD GENERATION ==========
 
-const ELEMENT_VARIANTS = [null, 'steel', 'fire', 'cryo', 'acid', 'volt', 'light', 'void'];
+const ELEMENT_VARIANTS = ['steel', 'fire', 'cryo', 'acid', 'volt', 'light', 'void'];
 
 const ELEMENT_LABELS = {
     steel: 'Steel', fire: 'Fire', cryo: 'Cryo',
@@ -307,21 +307,22 @@ function generateModId(baseId, element) {
     return element ? baseId + '_' + element : baseId;
 }
 
-// Generate mods: only attack mods get element variants, defence/utility are neutral-only
-// 6 attack bases × 8 variants + 4 defence/utility bases × 1 = 52 mods
+// Generate mods: attack mods get all elements, defence/utility are steel (default) only
+// 6 attack bases × 7 elements + 4 defence/utility bases × 1 = 46 mods
 const MODS = [];
 for (let b = 0; b < MOD_BASES.length; b++) {
     const base = MOD_BASES[b];
-    const variants = base.category === 'attack' ? ELEMENT_VARIANTS : [null];
+    const variants = base.category === 'attack' ? ELEMENT_VARIANTS : ['steel'];
     for (let e = 0; e < variants.length; e++) {
         const element = variants[e];
+        const isVariant = element !== 'steel';
         MODS.push({
-            id: generateModId(base.baseId, element),
-            name: generateModName(base.baseName, element),
+            id: generateModId(base.baseId, isVariant ? element : null),
+            name: isVariant ? generateModName(base.baseName, element) : base.baseName,
             type: 'mod',
             category: base.category,
             element: element,
-            desc: element ? (ELEMENT_DESC_PREFIX[element] + ' ' + base.desc) : base.desc,
+            desc: isVariant ? (ELEMENT_DESC_PREFIX[element] + ' ' + base.desc) : base.desc,
             image: base.image,
             fuel: base.fuel,
             atkMult: base.atkMult,
@@ -329,9 +330,9 @@ for (let b = 0; b < MOD_BASES.length; b++) {
             targeting: base.targeting,
             regenMult: base.regenMult || 0,
             regenBase: base.regenBase || 0,
-            cssClass: element ? (base.cssClass + ' element-' + element) : base.cssClass,
+            cssClass: base.cssClass + ' element-' + element,
             flavour: base.flavour,
-            cost: element ? base.cost * 2 : base.cost
+            cost: isVariant ? base.cost * 2 : base.cost
         });
     }
 }
