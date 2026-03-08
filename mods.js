@@ -22,7 +22,7 @@
  * - flavour:   Array of random flavour messages
  * - cost:      Purchase price in Silicon
  *
- * GENERATION: 8 combat bases × 8 variants + 2 utility bases (neutral only) = 66 mods
+ * GENERATION: 6 attack bases × 8 variants + 4 defence/utility bases (neutral only) = 52 mods
  * Naming: "Swift Strike" → "Swift Fire Strike", "Swift Cryo Strike", etc.
  */
 
@@ -307,12 +307,12 @@ function generateModId(baseId, element) {
     return element ? baseId + '_' + element : baseId;
 }
 
-// Generate mods: utility mods are neutral-only, others get all element variants
-// 8 combat bases × 8 variants + 2 utility bases × 1 = 66 mods
+// Generate mods: only attack mods get element variants, defence/utility are neutral-only
+// 6 attack bases × 8 variants + 4 defence/utility bases × 1 = 52 mods
 const MODS = [];
 for (let b = 0; b < MOD_BASES.length; b++) {
     const base = MOD_BASES[b];
-    const variants = base.category === 'utility' ? [null] : ELEMENT_VARIANTS;
+    const variants = base.category === 'attack' ? ELEMENT_VARIANTS : [null];
     for (let e = 0; e < variants.length; e++) {
         const element = variants[e];
         MODS.push({
