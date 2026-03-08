@@ -6276,10 +6276,10 @@
                     updateStats();
                 }
 
-                // Flee — burn fuel and bail out
+                // Flee — burn fuel and bail out (no death penalty)
                 if (mod.flee) {
                     await addMessage("Systems overloaded — emergency retreat!", 'player');
-                    endBattle(false);
+                    endBattle('flee');
                     return;
                 }
             }
@@ -6607,7 +6607,9 @@
             const xpEarned = wave ? (wave.xpEarned || 0) : 0;
             const enemyType = wave ? wave.enemyType.name : null;
 
-            if (victory) {
+            if (victory === 'flee') {
+                addMessage("You fled the battle.", 'system');
+            } else if (victory) {
                 const combatOutros = [
                     "Too easy, all targets destroyed.",
                     "That's all of em down.",
